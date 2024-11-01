@@ -43,11 +43,12 @@ public class FirstFragment_next extends Fragment {
         listItem = new ArrayList<>();/*在数组中存放数据*/
         for (int i = 0; i < 10; ++i) {
             Map<String, Object> map = new HashMap<>();
-            map.put("ItemIcon",R.drawable.book);
+            map.put("ItemIcon",R.drawable.mudanting);
             map.put("ItemTitle", "title_title_title " + i);
             map.put("ItemText1", "time " + i);
             map.put("ItemText2", "place" + i);
             map.put("ItemPrice", i+"");
+            map.put("ItemDate","2024.11."+i);
             listItem.add(map);
         }
     }
@@ -55,16 +56,9 @@ public class FirstFragment_next extends Fragment {
     // 绑定数据到RecyclerView
     public void initView(View view){
         Rv = (RecyclerView) view.findViewById(R.id.my_recycler_view);
-        //使用线性布局
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this.getActivity());
-        Rv.setLayoutManager(layoutManager);
-        Rv.setHasFixedSize(true);
-
-        //用自定义分割线类设置分割线
-        Rv.addItemDecoration(new DividerItemDecoration(this.getActivity()));
-
         //为ListView绑定适配器
         timelineAdapter = new TimelineAdapter(this.getActivity(),listItem);
+        Rv.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         Rv.setAdapter(timelineAdapter);
     }
 }

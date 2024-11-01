@@ -1,18 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="300dp"
+    android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/cardview_light_background"
     android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/lv_date"
+        android:layout_width="73dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="7dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lvTopLine"
+        android:layout_width="2dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@id/lvDot"
+        app:layout_constraintEnd_toEndOf="@id/lvDot"
+        app:layout_constraintBottom_toTopOf="@id/lvDot"
+        android:background="@color/black" />
+
+    <TextView
+        android:id="@+id/lvDot"
+        android:layout_width="5dp"
+        android:layout_height="5dp"
+        android:layout_marginLeft="7dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/lv_date"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/timelline_dot_normal" />
+
+    <TextView
+        android:id="@+id/lvBottomLine"
+        android:layout_width="2dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="@id/lvDot"
+        app:layout_constraintEnd_toEndOf="@id/lvDot"
+        app:layout_constraintTop_toBottomOf="@id/lvDot"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/black" />
 
     <ImageView
         android:id="@+id/lv_icon"
         android:layout_width="80dp"
         android:layout_height="100dp"
-        android:layout_margin="10dp"
+        android:layout_margin="15dp"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/lvDot"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -56,7 +95,7 @@
         android:layout_marginHorizontal="7dp"
         app:layout_constraintStart_toEndOf="@id/lv_icon"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/lv_icon"
+        app:layout_constraintTop_toBottomOf="@id/lv_content2"
         android:orientation="horizontal"
         android:gravity="end">
         <TextView
