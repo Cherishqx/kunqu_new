@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FirstFragment_origin">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".HomePageActivity">
+
+            <com.youth.banner.Banner
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_music_library"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/rounded_rectangle"
+                android:gravity="center"
+                android:onClick="music_library"
+                android:text="@string/tv_musicLibrary"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/banner" />
+
+            <TextView
+                android:id="@+id/tv_recommend"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="@string/tv_recommend"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.048"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_music_library" />
+
+            <TextView
+                android:id="@+id/tv_ranking"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:text="@string/tv_heatRanking"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.048"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/scroll_recommend" />
+
+            <HorizontalScrollView
+                android:id="@+id/scroll_recommend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_recommend">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="140dp"
+                        android:layout_height="210dp"
+                        android:layout_marginLeft="16dp"
+                        android:src="@mipmap/recommend_1" />
+
+                    <ImageView
+                        android:layout_width="140dp"
+                        android:layout_height="210dp"
+                        android:layout_marginLeft="16dp"
+                        android:src="@mipmap/recommend_2" />
+
+                    <ImageView
+                        android:layout_width="140dp"
+                        android:layout_height="210dp"
+                        android:layout_marginLeft="16dp"
+                        android:src="@mipmap/recommend_3" />
+
+                    <ImageView
+                        android:layout_width="140dp"
+                        android:layout_height="210dp"
+                        android:layout_marginLeft="16dp"
+                        android:src="@mipmap/recommend_4" />
+
+                    <ImageView
+                        android:layout_width="140dp"
+                        android:layout_height="210dp"
+                        android:layout_marginLeft="16dp"
+                        android:src="@mipmap/recommend_5" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <HorizontalScrollView
+                android:id="@+id/scroll_Ranking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_ranking">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="140dp"
+                        android:layout_height="210dp"
+                        android:layout_marginLeft="16dp"
+                        android:src="@mipmap/ranking_1" />
+
+                    <ImageView
+                        android:layout_width="140dp"
+                        android:layout_height="210dp"
+                        android:layout_marginLeft="16dp"
+                        android:src="@mipmap/ranking_2" />
+
+                    <ImageView
+                        android:layout_width="140dp"
+                        android:layout_height="210dp"
+                        android:layout_marginLeft="16dp"
+                        android:src="@mipmap/ranking_3" />
+
+                    <ImageView
+                        android:layout_width="140dp"
+                        android:layout_height="210dp"
+                        android:layout_marginLeft="16dp"
+                        android:src="@mipmap/ranking_4" />
+
+                    <ImageView
+                        android:layout_width="140dp"
+                        android:layout_height="210dp"
+                        android:layout_marginLeft="16dp"
+                        android:src="@mipmap/ranking_5" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+
+
+</FrameLayout>
