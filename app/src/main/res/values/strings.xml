@@ -1,4 +1,6 @@
 <resources>
+    //cyx_string
+    <string name="prince_sub">起</string>
     <string name="app_name">My Application2</string>
 
     <string name="navigation1">首页</string>
