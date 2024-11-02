@@ -3,4 +3,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="purple">#80617E</color>
+    <color name="search_bg">#F2F0F0</color>
 </resources>
