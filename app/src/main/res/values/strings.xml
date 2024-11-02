@@ -19,5 +19,7 @@
     <string name="tv_musicLibrary">曲库</string>
     <string name="tv_recommend">昆曲推荐</string>
     <string name="tv_heatRanking">热度排行</string>
+    <string name="musicLibrary_title">曲库</string>
+    <string name="image">照片</string>
     
 </resources>

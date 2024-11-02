@@ -58,6 +58,14 @@ public class FirstFragment_origin extends Fragment {
                 .addBannerLifecycleObserver(this)//添加生命周期观察者
                 .setIndicator(new CircleIndicator(getContext()));
 
+        TextView tv = view.findViewById(R.id.tv_music_library);
+        tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MusicLibraryActivity.class);
+                startActivity(intent);
+            }
+        });
         
 
         return view;
