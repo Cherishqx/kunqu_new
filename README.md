@@ -88,6 +88,9 @@ push会帮你推送到github上
 
 FirstFragment包含两个fragment，分别是FirstFragment_origin（对应xml为：首页/发现），FirstFragment_next（首页/前世今生）
 
+FourthFragment包含两个fragment，分别是HistoryFragmen （对应xml为：我的/发现），FavoritesFragemnt（我的/收藏）
+
+图片以及其他边框的倒角效果要使用API31以上的SDK。
 
 
 
