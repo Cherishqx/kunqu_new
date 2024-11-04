@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication2.Adapter.Adapter_f3;
 import com.example.myapplication2.Data.Data_Sentence_f3;
 
-import java.util.ArrayList;
 import java.util.List;
 public class ThirdFragment extends Fragment {
     private RecyclerView recyclerView;

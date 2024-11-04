@@ -11,4 +11,16 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <!-- 导航栏(我的） -->
+    <style name="CustomMenuItemTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Menu">
+        <item name="android:textSize">50sp</item>
+        <item name="android:textColor">#FFFFFF</item> <!-- Gray color -->
+    </style>
+
+    <!-- 头像样式 -->
+    <style name="CircleImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
 </resources>

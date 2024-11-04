@@ -1,7 +1,8 @@
 <resources>
+
     //cyx_string
     <string name="prince_sub">起</string>
-    <string name="app_name">My Application2</string>
+    <string name="app_name">昆曲簿·</string>
 
     <string name="navigation1">首页</string>
     <string name="navigation2">知识</string>
@@ -21,5 +22,34 @@
     <string name="tv_heatRanking">热度排行</string>
     <string name="musicLibrary_title">曲库</string>
     <string name="image">照片</string>
-    
+
+    // LCL_String
+    <string name="message">消息</string>
+    <string name="touxiang">头像</string>
+    <string name="shezhi">设置</string>
+    <string name="nikename">用户昵称七个字</string>
+    <string name="sign">    喜欢昆曲的小主一枚,喜欢这个昆曲APP</string>
+    <string name="history">历史</string>
+    <string name="favorites">收藏</string>
+    <string name="day0402">直教人生死相许</string>
+    <string name="day0401">问世间情为何物</string>
+    <string name="no_content">    </string>
+    <string name="day04">04</string>
+    <string name="year_11_2024">/11/2024</string>
+    <string name="diary04">第四天打卡!今天看了《牡丹亭》，太感人了，这就是昆曲的魅力吧！</string>
+    <string name="day03">03</string>
+    <string name="diary03">第三天打卡！今天看了《白蛇》，熟悉的故事昆曲的演绎下另有滋味。</string>
+    <string name="day0302">千年成道旧因由</string>
+    <string name="day0301">身本白蛇苦苦修</string>
+    <string name="day0202">眼看他楼塌了</string>
+    <string name="day0203">眼看他宴宾客</string>
+    <string name="day0201">眼看他起朱楼</string>
+    <string name="day02">02</string>
+    <string name="diary02">第二天打卡！在昆曲簿了解到一折戏叫《桃花扇》改天有时间看看！</string>
+    <string name="day01">01</string>
+    <string name="diary01">第一天打卡！很喜欢柳梦梅和沈丽娘的故事，真想亲身体验一场!</string>
+    <string name="day0102">因梦成戏</string>
+    <string name="day0101">因情成梦</string>
+    <string name="bt_calendar">bt_calendar\n</string>
+
 </resources>

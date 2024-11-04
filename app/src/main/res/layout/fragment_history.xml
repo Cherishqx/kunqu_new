@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HistoryFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <CalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="310dp"
+                android:firstDayOfWeek="1"
+                android:focusedMonthDateColor="#f00"
+                android:selectedWeekBackgroundColor="#aff"
+                android:shownWeekCount="4"
+                android:unfocusedMonthDateColor="#f9f"
+                android:weekSeparatorLineColor="#ff0"
+                app:layout_constraintBottom_toTopOf="@id/bt_calendar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@color/white" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/bt_calendar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:layout_constraintTop_toBottomOf="@+id/calendarView">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/up_down"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/up_down"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@color/white"
+                    android:contentDescription="@string/bt_calendar"
+                    android:padding="10dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_up"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginEnd="25dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/mine_hiss"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightgray"
+        app:layout_constraintTop_toBottomOf="@+id/bt_calendar"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/his1"
+            android:layout_width="match_parent"
+            android:layout_height="254dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/mine_rounded_corners_with_shadow"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day0402"
+                android:ems="1"
+                android:textSize="25sp"
+                android:fontFamily="@font/islide"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day0401"
+                android:layout_marginTop="25dp"
+                android:ems="1"
+                android:textSize="25sp"
+                android:fontFamily="@font/islide"
+                android:textColor="@color/black"
+                />
+
+            <ImageView
+                android:layout_width="175.5dp"
+                android:layout_height="234dp"
+                android:clipToOutline="true"
+                android:background="@drawable/mine_rounded_corners"
+                android:contentDescription="@string/no_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/mine2" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="42dp"
+                android:layout_marginTop="47dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:text="@string/day04"
+                        android:textSize="40sp"
+                        />
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="16dp"
+                        android:text="@string/year_11_2024"
+                        android:textSize="13sp"
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="115dp"
+                    android:padding="5dp"
+                    android:text="@string/diary04"
+
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/his2"
+            android:layout_width="match_parent"
+            android:layout_height="254dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/mine_rounded_corners_with_shadow"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="42dp"
+                android:layout_marginTop="47dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:text="@string/day03"
+                        android:textSize="40sp"
+                        />
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="16dp"
+                        android:text="@string/year_11_2024"
+                        android:textSize="13sp"
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="115dp"
+                    android:padding="5dp"
+                    android:text="@string/diary03"
+
+                    />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="175.5dp"
+                android:layout_height="234dp"
+                android:clipToOutline="true"
+                android:background="@drawable/mine_rounded_corners"
+                android:contentDescription="@string/no_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/mine1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day0302"
+                android:ems="1"
+                android:textSize="25sp"
+                android:fontFamily="@font/islide"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day0301"
+                android:layout_marginTop="25dp"
+                android:ems="1"
+                android:textSize="25sp"
+                android:fontFamily="@font/islide"
+                android:textColor="@color/black"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/his3"
+            android:layout_width="match_parent"
+            android:layout_height="254dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/mine_rounded_corners_with_shadow"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day0202"
+                android:ems="1"
+                android:textSize="17sp"
+                android:fontFamily="@font/islide"
+                android:textColor="@color/black"
+                android:layout_marginTop="25dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day0203"
+                android:ems="1"
+                android:textSize="17sp"
+                android:fontFamily="@font/islide"
+                android:textColor="@color/black"
+                android:layout_marginTop="50dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day0201"
+                android:layout_marginTop="75dp"
+                android:ems="1"
+                android:textSize="17sp"
+                android:fontFamily="@font/islide"
+                android:textColor="@color/black"
+                />
+
+            <ImageView
+                android:layout_width="175.5dp"
+                android:layout_height="234dp"
+                android:clipToOutline="true"
+                android:background="@drawable/mine_rounded_corners"
+                android:contentDescription="@string/no_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/mine4" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="42dp"
+                android:layout_marginTop="47dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:text="@string/day02"
+                        android:textSize="40sp"
+                        />
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="16dp"
+                        android:text="@string/year_11_2024"
+                        android:textSize="13sp"
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="115dp"
+                    android:padding="5dp"
+                    android:text="@string/diary02"
+
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/his4"
+            android:layout_width="match_parent"
+            android:layout_height="254dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/mine_rounded_corners_with_shadow"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="42dp"
+                android:layout_marginTop="47dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:text="@string/day01"
+                        android:textSize="40sp"
+                        />
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="16dp"
+                        android:text="@string/year_11_2024"
+                        android:textSize="13sp"
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="115dp"
+                    android:padding="5dp"
+                    android:text="@string/diary01"
+
+                    />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="175.5dp"
+                android:layout_height="234dp"
+                android:clipToOutline="true"
+                android:background="@drawable/mine_rounded_corners"
+                android:contentDescription="@string/no_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/mine3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day0102"
+                android:ems="1"
+                android:textSize="25sp"
+                android:fontFamily="@font/islide"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day0101"
+                android:layout_marginTop="25dp"
+                android:ems="1"
+                android:textSize="25sp"
+                android:fontFamily="@font/islide"
+                android:textColor="@color/black"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+
+    </FrameLayout>

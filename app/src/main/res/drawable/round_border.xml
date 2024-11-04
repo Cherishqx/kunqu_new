@@ -1,0 +1,8 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <corners android:radius="250dp"/> <!-- 圆角半径 -->
+    <stroke
+        android:width="5dp"
+        android:color="@color/white"/> <!-- 边框宽度和颜色 -->
+</shape>
+
