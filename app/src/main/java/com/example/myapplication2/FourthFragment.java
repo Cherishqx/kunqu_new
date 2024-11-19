@@ -31,6 +31,14 @@ public class FourthFragment extends Fragment implements View.OnClickListener {
         selectedFragment(0); // 默认显示第一个Fragment
         p4h.setOnClickListener(this);
         p4f.setOnClickListener(this);
+        view.findViewById(R.id.nav_history_icon).setOnClickListener(this);
+        view.findViewById(R.id.nav_favorites_icon).setOnClickListener(this);
+
+        // 设置默认选中状态
+        p4h.setSelected(true);
+        view.findViewById(R.id.nav_history_icon).setSelected(true);
+        p4f.setSelected(false);
+        view.findViewById(R.id.nav_favorites_icon).setSelected(false);
 
         return view;
     }
@@ -78,10 +86,26 @@ public class FourthFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if (id == R.id.nav_history) {
+        if (id == R.id.nav_history || id == R.id.nav_history_icon) {
+            onHistoryClick();
             selectedFragment(0);
-        } else if (id == R.id.nav_favorites) {
+        } else if (id == R.id.nav_favorites || id == R.id.nav_favorites_icon) {
+            onFavoritesClick();
             selectedFragment(1);
         }
+    }
+
+    public void onHistoryClick() {
+        getView().findViewById(R.id.nav_history_icon).setSelected(true);
+        p4h.setSelected(true);
+        getView().findViewById(R.id.nav_favorites_icon).setSelected(false);
+        p4f.setSelected(false);
+    }
+
+    public void onFavoritesClick() {
+        getView().findViewById(R.id.nav_history_icon).setSelected(false);
+        p4h.setSelected(false);
+        getView().findViewById(R.id.nav_favorites_icon).setSelected(true);
+        p4f.setSelected(true);
     }
 }

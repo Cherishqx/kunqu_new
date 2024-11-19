@@ -29,7 +29,7 @@
     <string name="shezhi">设置</string>
     <string name="nikename">用户昵称七个字</string>
     <string name="sign">    喜欢昆曲的小主一枚,喜欢这个昆曲APP</string>
-    <string name="history">历史</string>
+    <string name="history">昆旅</string>
     <string name="favorites">收藏</string>
     <string name="day0402">直教人生死相许</string>
     <string name="day0401">问世间情为何物</string>
@@ -51,5 +51,12 @@
     <string name="day0102">因梦成戏</string>
     <string name="day0101">因情成梦</string>
     <string name="bt_calendar">bt_calendar\n</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="signupRedirectText">Not yet registered? Signup</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="loginRedirectText">Already an user? login</string>
 
 </resources>
