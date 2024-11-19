@@ -51,5 +51,12 @@
     <string name="day0102">因梦成戏</string>
     <string name="day0101">因情成梦</string>
     <string name="bt_calendar">bt_calendar\n</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="signupRedirectText">Not yet registered? Signup</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="loginRedirectText">Already an user? login</string>
 
 </resources>
