@@ -16,7 +16,7 @@ public class FirstFragment extends Fragment implements View.OnClickListener{
     TextView p1s1;
     TextView p1s2;
     private FirstFragment_origin firstFragment_origin;
-    private FirstFragment_next firstFragment_next;
+    private ViewPage2Fragment firstFragment_next;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class FirstFragment extends Fragment implements View.OnClickListener{
             }
         } else {
             if (firstFragment_next == null) {
-                firstFragment_next = new FirstFragment_next();
+                firstFragment_next = new ViewPage2Fragment();
                 fragmentTransaction.add(R.id.container, firstFragment_next);
             } else {
                 fragmentTransaction.show(firstFragment_next);
