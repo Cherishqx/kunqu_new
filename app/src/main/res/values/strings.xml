@@ -14,6 +14,10 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="sentence_input">请输入句子：</string>
+    <string name="image_input">请选择图片：</string>
+    <string name="confirm">确定</string>
+
     // zwz_String
     <string name="bt_find">发现</string>
     <string name="bt_pastAndPresent">前世今生</string>
