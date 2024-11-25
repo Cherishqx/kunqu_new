@@ -1,29 +1,16 @@
 package com.example.myapplication2;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.GridView;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.myapplication2.Adapter.ImageItemAdapter;
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class MusicLibraryActivity extends AppCompatActivity {
+public class DataProvider {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_music_library);
-        GridView gridView = findViewById(R.id.myGridView);
-
-        // 创建数据列表
+    public static List<ImageItem> getAllItems() {
         List<ImageItem> items = new ArrayList<>();
         items.add(new ImageItem(R.drawable.music_library_1, "艳云亭", "简介：讲述的是书生洪绘与枢密使萧凤韶之女惜芬几经波折，终于结为夫妇的爱情故事，共三十二出。", "music_library_1"));
         items.add(new ImageItem(R.drawable.music_library_2, "玉簪记", "简介：讲述的是宋代书生潘必正与女道士陈妙常的恋爱故事，共三十三出。", "music_library_2"));
-        items.add(new ImageItem(R.drawable.music_library_3, "跃鲤记", "简介：讲述的是汉代姜诗的妻子庞三娘躬行妇道、侍奉婆婆的故事，共四十二折，无折目。", "music_library_3"));
+        items.add(new ImageItem(R.drawable.music_library_3, "跃鲤��", "简介：讲述的是汉代姜诗的妻子庞三娘躬行妇道、侍奉婆婆的故事，共四十二折，无折目。", "music_library_3"));
         items.add(new ImageItem(R.drawable.music_library_4, "占花魁", "简介：讲述的是卖油郎独占花魁女的故事，共二十八出。", "music_library_4"));
         items.add(new ImageItem(R.drawable.music_library_5, "长生殿", "简介：共二卷，全剧共五十出", "music_library_5"));
         items.add(new ImageItem(R.drawable.music_library_6, "白罗衫", "简介：讲述了徐继祖寻白罗衫，揭开身世，面对仇父进行抉择的故事，共十五出。", "music_library_6"));
@@ -37,20 +24,12 @@ public class MusicLibraryActivity extends AppCompatActivity {
         items.add(new ImageItem(R.drawable.music_library_14, "邯郸梦", "简介：讲述的是吕洞宾度卢生而使其经历荣辱梦幻的故事，共三十出。", "music_library_14"));
         items.add(new ImageItem(R.drawable.music_library_15, "红梨记", "简介：讲述的是北宋书生赵汝州与歌妓谢素秋的恋爱故事，原本共三十出。", "music_library_15"));
         items.add(new ImageItem(R.drawable.music_library_16, "红楼梦", "简介：全剧分为上下两本，总历时5个小时。", "music_library_16"));
-
-        // 设置适配器
-        ImageItemAdapter adapter = new ImageItemAdapter(this, items);
-        gridView.setAdapter(adapter);
-
-        gridView.setOnItemClickListener((parent, view, position, id) -> {
-            Intent intent = new Intent(MusicLibraryActivity.this, DetailActivity.class);
-            // 传递图片名称字符串而不是图片资源ID
-            intent.putExtra("imageName", items.get(position).getImageName());
-            // 启动DetailActivity
-            startActivity(intent);
-        });
-
-
+        return items;
     }
 
+    public static List<ImageItem> getRandomItems(int count) {
+        List<ImageItem> allItems = getAllItems();
+        Collections.shuffle(allItems);
+        return allItems.subList(0, Math.min(count, allItems.size()));
+    }
 }

@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.myapplication2.Adapter.TimelineAdapter_history;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;

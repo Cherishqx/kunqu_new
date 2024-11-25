@@ -1,4 +1,4 @@
-package com.example.myapplication2;
+package com.example.myapplication2.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,15 +9,17 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication2.R;
+
 import java.util.ArrayList;
 import java.util.Map;
 
-public class TimelineAdapter_history extends RecyclerView.Adapter<TimelineAdapter_history.Viewholder> {
+public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.Viewholder> {
     private LayoutInflater inflater;
     private ArrayList<Map<String, Object>> listItem;
 
     // Constructor to pass in the data
-    public TimelineAdapter_history(Context context, ArrayList<Map<String, Object>> listItem) {
+    public TimelineAdapter(Context context, ArrayList<Map<String, Object>> listItem) {
         inflater = LayoutInflater.from(context);
         this.listItem = listItem;
     }
@@ -57,10 +59,10 @@ public class TimelineAdapter_history extends RecyclerView.Adapter<TimelineAdapte
 
         if (position == 0) {
             // 第一行头的竖线不显示
-            holder.lvTopLine.setVisibility(View.INVISIBLE);
+            holder.lvBottomLine.setVisibility(View.VISIBLE);
         }
         else if (position == listItem.size() - 1) {
-            holder.lvTopLine.setVisibility(View.VISIBLE);
+            holder.lvBottomLine.setVisibility(View.INVISIBLE);
         }
 
         holder.Title.setText((String) item.get("ItemTitle"));
