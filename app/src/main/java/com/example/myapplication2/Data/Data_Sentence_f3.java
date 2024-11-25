@@ -18,7 +18,7 @@ public class Data_Sentence_f3 {
     public static List<Data_Sentence_f3> generateData(int count) {
         List<Data_Sentence_f3> itemList = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            itemList.add(new Data_Sentence_f3("这是收藏的第 " + (i + 1)+" 段文本")); // 示例数据
+            itemList.add(new Data_Sentence_f3("这是收藏的第 " + (i + 1)+" \n段文本")); // 示例数据
         }
         return itemList;
     }
