@@ -9,10 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication2.R;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class SentenceAdapter extends RecyclerView.Adapter<SentenceAdapter.Viewholder> {
     private ArrayList<Map<String, Object>> listItem;
+    private List<String> inputTexts = new ArrayList<>();
 
     public SentenceAdapter(ArrayList<Map<String, Object>> listItem) {
         this.listItem = listItem;
@@ -39,6 +41,7 @@ public class SentenceAdapter extends RecyclerView.Adapter<SentenceAdapter.Viewho
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
         Map<String, Object> item = listItem.get(position);
         holder.ed.setText((String) item.get("sentence"));
+
     }
 
 
@@ -46,4 +49,10 @@ public class SentenceAdapter extends RecyclerView.Adapter<SentenceAdapter.Viewho
     public int getItemCount() {
         return listItem.size();
     }
+
+    public List<String> getInputTexts() {
+        return inputTexts;
+    }
+
+
 }

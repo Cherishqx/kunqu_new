@@ -12,7 +12,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="180dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="90dp"
         android:padding="15dp"
         android:orientation="vertical"
         android:background="@color/white"
@@ -34,10 +34,11 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/img_select"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="55dp"
         android:background="@color/white"
         android:orientation="vertical"
         android:padding="15dp"
@@ -52,25 +53,34 @@
             android:layout_height="wrap_content"
             android:text="@string/image_input" />
 
-        <ListView
-            android:id="@+id/imagelist"
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/imagelist"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:scrollbars="vertical"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"/>-->
+        <GridView
+            android:id="@+id/imglist"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="vertical"
+            android:layout_height="match_parent"
+            android:horizontalSpacing="10dp"
+            android:numColumns="4"
+            android:verticalSpacing="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteX="6dp" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginHorizontal="10dp"
         android:background="@color/purple"
-        app:layout_constraintVertical_bias="0.9"
-        app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_select"
         android:gravity="center">
         <TextView
             android:layout_width="wrap_content"
