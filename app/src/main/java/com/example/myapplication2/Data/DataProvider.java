@@ -10,7 +10,7 @@ public class DataProvider {
         List<ImageItem> items = new ArrayList<>();
         items.add(new ImageItem(R.drawable.music_library_1, "艳云亭", "简介：讲述的是书生洪绘与枢密使萧凤韶之女惜芬几经波折，终于结为夫妇的爱情故事，共三十二出。", "music_library_1"));
         items.add(new ImageItem(R.drawable.music_library_2, "玉簪记", "简介：讲述的是宋代书生潘必正与女道士陈妙常的恋爱故事，共三十三出。", "music_library_2"));
-        items.add(new ImageItem(R.drawable.music_library_3, "跃鲤��", "简介：讲述的是汉代姜诗的妻子庞三娘躬行妇道、侍奉婆婆的故事，共四十二折，无折目。", "music_library_3"));
+        items.add(new ImageItem(R.drawable.music_library_3, "跃鲤记", "简介：讲述的是汉代姜诗的妻子庞三娘躬行妇道、侍奉婆婆的故事，共四十二折，无折目。", "music_library_3"));
         items.add(new ImageItem(R.drawable.music_library_4, "占花魁", "简介：讲述的是卖油郎独占花魁女的故事，共二十八出。", "music_library_4"));
         items.add(new ImageItem(R.drawable.music_library_5, "长生殿", "简介：共二卷，全剧共五十出", "music_library_5"));
         items.add(new ImageItem(R.drawable.music_library_6, "白罗衫", "简介：讲述了徐继祖寻白罗衫，揭开身世，面对仇父进行抉择的故事，共十五出。", "music_library_6"));
