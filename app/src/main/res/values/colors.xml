@@ -2,7 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="purple">#80617E</color>
+    <color name="purple">#61BAA7</color>
     <color name="gainsboro">#DCDCDC</color> <!-- 淡灰色 -->
     <color name="lightgray">#F0F0F0</color> <!-- 亮灰色 -->
     <color name="slategray">#708090</color> <!-- 灰石色 -->

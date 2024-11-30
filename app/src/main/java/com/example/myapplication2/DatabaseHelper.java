@@ -38,7 +38,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 MyDatabase.execSQL("insert into collections (Id, content) values (5, 'Initial Content 5')");
                 MyDatabase.execSQL("insert into collections (Id, content) values (6, 'Initial Content 6')");
                 MyDatabase.execSQL("insert into collections (Id, content) values (7, 'Initial Content 7')");
-                MyDatabase.execSQL("insert into collections (Id, content) values (8, 'Initial Content 8')");
+                MyDatabase.execSQL("insert into collections (Id, content) values (8, 'Initi12al Content 8')");
             }
             cursor.close();
         }
