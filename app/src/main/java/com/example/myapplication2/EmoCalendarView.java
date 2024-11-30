@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -163,6 +164,11 @@ public class EmoCalendarView extends CalendarView {
                             x -= dpToPx(getContext(), 7);
                             break;
                     }
+                }
+
+                // Additional adjustment for API level >= 34
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE && dayOfWeek == 0) {
+                    y += dpToPx(getContext(), 41);
                 }
 
                 Log.d(TAG, "Drawing image for date: " + date + " at position: (" + x + ", " + y + ")");
