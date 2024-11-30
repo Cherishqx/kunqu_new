@@ -1,6 +1,5 @@
 package com.example.myapplication2;
 
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -9,7 +8,6 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.View;
 import android.widget.CalendarView;
 
 import androidx.annotation.NonNull;
@@ -17,7 +15,6 @@ import androidx.annotation.NonNull;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-
 
 public class EmoCalendarView extends CalendarView {
 
@@ -31,7 +28,7 @@ public class EmoCalendarView extends CalendarView {
     private int currentYear;
     private Paint selectedDatePaint;
     private Paint dateTextPaint;
-
+    private int screenDensity;
 
     public EmoCalendarView(Context context) {
         super(context);
@@ -51,15 +48,15 @@ public class EmoCalendarView extends CalendarView {
     private void init(Context context) {
         dateImages = new HashMap<>();
         imageSize = dpToPx(context, 38); // Convert 38dp to pixels
-        margin = dpToPx(context, 20); // Convert 25dp to pixels
+        margin = dpToPx(context, 20); // Convert 20dp to pixels
         cellSpacing = dpToPx(context, 5); // Convert 5dp to pixels
 
         selectedDatePaint = new Paint();
-        selectedDatePaint.setColor(Color.RED); // 设置选中日期的背景颜色
+        selectedDatePaint.setColor(Color.RED); // Set selected date background color
 
         dateTextPaint = new Paint();
-        dateTextPaint.setColor(Color.BLACK); // 设置日期字体颜色
-        dateTextPaint.setTextSize(dpToPx(context, 16)); // 设置日期字体大小
+        dateTextPaint.setColor(Color.BLACK); // Set date text color
+        dateTextPaint.setTextSize(dpToPx(context, 16)); // Set date text size
 
         Calendar calendar = Calendar.getInstance();
         currentMonth = calendar.get(Calendar.MONTH);
@@ -76,6 +73,10 @@ public class EmoCalendarView extends CalendarView {
         // Set the min and max date to restrict the calendar to the current month
         setMinDate(minDate);
         setMaxDate(maxDate);
+
+        // Get screen density
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        screenDensity = displayMetrics.densityDpi;
 
         setOnDateChangeListener(new OnDateChangeListener() {
             @Override
@@ -120,6 +121,50 @@ public class EmoCalendarView extends CalendarView {
                 float cellHeight = dpToPx(getContext(), 41); // Each date row is 41dp high
                 float x = margin + dayOfWeek * (cellWidth + cellSpacing) + (cellWidth - imageSize) / 2; // Center the image horizontally
                 float y = dpToPx(getContext(), 98) + (weekOfMonth - 1) * cellHeight + (cellHeight - imageSize) / 2; // Center the image vertically, starting from the third row
+
+                // Adjust y position based on screen density and row
+                if (screenDensity == DisplayMetrics.DENSITY_XXHIGH) { // 480 dpi
+                    switch (weekOfMonth) {
+                        case 1:
+                            y += dpToPx(getContext(), 24);
+                            break;
+                        case 2:
+                            y += dpToPx(getContext(), 30);
+                            break;
+                        case 3:
+                            y += dpToPx(getContext(), 36);
+                            break;
+                        case 4:
+                            y += dpToPx(getContext(), 43);
+                            break;
+                        case 5:
+                            y += dpToPx(getContext(), 50);
+                            break;
+                    }
+
+                    // Adjust x position based on column
+                    switch (dayOfWeek) {
+                        case 0:
+                            x += dpToPx(getContext(), 7);
+                            break;
+                        case 1:
+                            x += dpToPx(getContext(), 5);
+                            break;
+                        case 2:
+                            x += dpToPx(getContext(), 1);
+                            break;
+                        case 4:
+                            x -= dpToPx(getContext(), 1);
+                            break;
+                        case 5:
+                            x -= dpToPx(getContext(), 5);
+                            break;
+                        case 6:
+                            x -= dpToPx(getContext(), 7);
+                            break;
+                    }
+                }
+
                 Log.d(TAG, "Drawing image for date: " + date + " at position: (" + x + ", " + y + ")");
                 image.setBounds((int) x, (int) y, (int) (x + imageSize), (int) (y + imageSize)); // Set size to 38dp x 38dp
                 image.draw(canvas);
