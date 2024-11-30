@@ -12,71 +12,75 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="365dp"
             android:orientation="vertical"
-            android:layout_marginTop="380dp"
             android:padding="20dp">
 
             <EditText
-                android:layout_width="350dp"
-                android:layout_height="60dp"
                 android:id="@+id/signup_email"
-                android:background="@drawable/lavender_border"
+                android:layout_width="320dp"
+                android:layout_height="50dp"
                 android:layout_marginTop="30dp"
-                android:padding="8dp"
-                android:hint="@string/email"
+                android:background="@drawable/lavender_border"
                 android:drawableLeft="@drawable/baseline_email_24"
-                android:drawablePadding="8dp"/>
+                android:drawablePadding="8dp"
+                android:layout_gravity="center"
+                android:hint="@string/email"
+                android:padding="8dp" />
 
             <EditText
-                android:layout_width="350dp"
-                android:layout_height="60dp"
                 android:id="@+id/signup_password"
-                android:background="@drawable/lavender_border"
+                android:layout_width="320dp"
+                android:layout_height="50dp"
                 android:layout_marginTop="20dp"
-                android:padding="8dp"
+                android:background="@drawable/lavender_border"
+                android:drawableLeft="@drawable/baseline_lock_24"
+                android:drawablePadding="8dp"
                 android:hint="@string/password"
                 android:inputType="textPassword"
-                android:drawableLeft="@drawable/baseline_lock_24"
-                android:drawablePadding="8dp"/>
+                android:layout_gravity="center"
+                android:padding="8dp" />
 
             <EditText
-                android:layout_width="350dp"
-                android:layout_height="60dp"
                 android:id="@+id/signup_confirm"
-                android:background="@drawable/lavender_border"
+                android:layout_width="320dp"
+                android:layout_height="50dp"
                 android:layout_marginTop="20dp"
-                android:padding="8dp"
+                android:background="@drawable/lavender_border"
+                android:drawableLeft="@drawable/baseline_password_24"
+                android:drawablePadding="8dp"
                 android:hint="@string/confirm_password"
                 android:inputType="textPassword"
-                android:drawableLeft="@drawable/baseline_password_24"
-                android:drawablePadding="8dp"/>
+                android:layout_gravity="center"
+                android:padding="8dp" />
 
             <Button
-                android:layout_width="350dp"
-                android:layout_height="70dp"
-                android:text="@string/sign_up"
                 android:id="@+id/signup_button"
-                android:textSize="18sp"
+                android:layout_width="320dp"
+                android:layout_height="50dp"
                 android:layout_marginTop="30dp"
                 android:background="@color/purple"
-                app:cornerRadius = "30dp"/>
+                android:text="@string/sign_up"
+                android:layout_gravity="center"
+                android:textSize="18sp"
+                app:cornerRadius="30dp" />
 
             <TextView
+                android:id="@+id/loginRedirectText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/loginRedirectText"
-                android:text="@string/loginRedirectText"
                 android:layout_gravity="center"
-                android:padding="8dp"
-                android:textSize="18sp"
                 android:layout_marginTop="8dp"
-                android:textColor="@color/purple"/>
+                android:padding="8dp"
+                android:text="@string/loginRedirectText"
+                android:textColor="@color/purple"
+                android:textSize="18sp" />
 
         </LinearLayout>
 

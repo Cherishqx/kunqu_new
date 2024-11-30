@@ -17,12 +17,12 @@
         <LinearLayout
             android:id="@+id/mine_head_content"
             android:layout_width="match_parent"
-            android:layout_height="280dp"
+            android:layout_height="250dp"
             android:background="@drawable/bg_img"
             android:gravity="top"
             android:orientation="vertical"
             android:paddingStart="5dp"
-            android:paddingTop="44dp"
+            android:paddingTop="22dp"
             android:paddingEnd="5dp"
             android:paddingBottom="0dp">
 
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingBottom="12dp">
+                android:paddingBottom="20dp">
 
                 <ImageButton
                     android:id="@+id/button_hint"
@@ -79,7 +79,7 @@
 
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginStart="10dp"
                     android:orientation="vertical">
@@ -90,10 +90,10 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="top"
                         android:layout_marginTop="16dp"
-                        android:fontFamily="@font/qijic"
+                        android:fontFamily="@font/jx"
                         android:text="@string/nikename"
                         android:textColor="@color/white"
-                        android:textSize="36sp"
+                        android:textSize="24sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -102,10 +102,10 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:layout_marginTop="16dp"
-                        android:fontFamily="@font/islide"
+                        android:fontFamily="@font/jx"
                         android:text="@string/sign"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
@@ -116,8 +116,8 @@
         <Toolbar
             android:id="@+id/toolbar_mine"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="-25dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-20dp"
             android:background="@drawable/rounded_nav_background"
             app:layout_constraintTop_toBottomOf="@id/mine_header">
 
@@ -129,8 +129,8 @@
 
                 <ImageView
                     android:id="@+id/nav_history_icon"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_history_selector"
                     android:layout_marginEnd="5dp"
@@ -141,25 +141,24 @@
 
                 <TextView
                     android:id="@+id/nav_history"
-                    android:layout_width="50dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/history"
-                    android:textSize="30sp"
-                    android:fontFamily="@font/qijic"
                     android:layout_marginEnd="35dp"
-                    android:textColor="@color/mine_text_selector"
+                    android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:background="?attr/selectableItemBackground"
-                    />
+                    android:fontFamily="@font/jx"
+                    android:gravity="center_vertical"
+                    android:text="@string/history"
+                    android:textColor="@color/mine_text_selector"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
-                android:layout_height="30dp"
+                android:layout_height="24dp"
                 android:src="@drawable/mine_line"/>
 
             <LinearLayout
@@ -170,13 +169,13 @@
 
                 <TextView
                     android:id="@+id/nav_favorites"
-                    android:layout_width="50dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/favorites"
-                    android:textSize="30sp"
+                    android:textSize="16sp"
                     android:layout_marginStart="35dp"
-                    android:fontFamily="@font/qijic"
+                    android:fontFamily="@font/jx"
                     android:textColor="@color/mine_text_selector"
                     android:clickable="true"
                     android:focusable="true"
@@ -185,8 +184,8 @@
 
                 <ImageView
                     android:id="@+id/nav_favorites_icon"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_favorites_selector"
                     android:layout_marginStart="8dp"

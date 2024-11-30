@@ -33,7 +33,7 @@
             android:layout_weight="1"
             android:layout_marginTop="2.5dp"
             android:textSize="20sp"
-            android:fontFamily="@font/qijic"
+            android:fontFamily="@font/jx"
             android:textColor="@android:color/black" />
 
         <ImageView

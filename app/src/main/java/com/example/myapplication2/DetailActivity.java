@@ -1,17 +1,13 @@
 package com.example.myapplication2;
 
-import android.content.res.AssetFileDescriptor;
-import android.net.Uri;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.myapplication2.Adapter.DetailsAdapter;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -20,9 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class DetailActivity extends AppCompatActivity {
@@ -36,7 +30,13 @@ public class DetailActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycler_view_details);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // 获取从Intent传递过来的imageName
+        TextView tvTitle = findViewById(R.id.tv_title);
+        TextView tvMainPeople = findViewById(R.id.tv_main_people);
+        TextView tvDirectorInfo = findViewById(R.id.tv_director_info);
+        TextView tvProfile = findViewById(R.id.tv_profile);
+        TextView tvDetail = findViewById(R.id.tv_detail);
+
+        // Get the imageName from the Intent
         String imageName = getIntent().getStringExtra("imageName");
 
         if (imageName != null && !imageName.isEmpty()) {
@@ -46,22 +46,17 @@ public class DetailActivity extends AppCompatActivity {
         if (imageName != null && !imageName.isEmpty()) {
             Map<String, String> details = getDetailsFromCsv(imageName);
             if (!details.isEmpty()) {
-                List<DetailItem> items = new ArrayList<>();
-                // 根据需要调整字号大小
-                items.add(new DetailItem("标题: " + details.get("title"), 30));
-                items.add(new DetailItem("导演信息: " + details.get("subTitle"), 23));
-                items.add(new DetailItem(details.get("mainPeople"), 23));
-                items.add(new DetailItem(details.get("profile"), 23));
-                items.add(new DetailItem(details.get("detail"), 23));
-
-                DetailsAdapter adapter = new DetailsAdapter(this, items);
-                recyclerView.setAdapter(adapter);
+                tvTitle.setText(details.get("title"));
+                tvMainPeople.setText(details.get("mainPeople"));
+                tvDirectorInfo.setText(details.get("subTitle"));
+                tvProfile.setText(details.get("profile"));
+                tvDetail.setText(details.get("detail"));
             }
         }
     }
 
     private void playVideoFromAssets(VideoView videoView, String fileName) {
-        // 复制文件到缓存目录
+        // Copy file to cache directory
         File file = new File(getCacheDir() + "/" + fileName);
         if (!file.exists()) {
             try (InputStream is = getAssets().open(fileName);
@@ -76,28 +71,25 @@ public class DetailActivity extends AppCompatActivity {
             }
         }
 
-        // 设置VideoView播放复制后的文件
+        // Set VideoView to play the copied file
         videoView.setVideoPath(file.getPath());
         videoView.start();
     }
 
-
     private Map<String, String> getDetailsFromCsv(String imageName) {
         Map<String, String> details = new HashMap<>();
         try {
-            // 打开assets文件夹下的CSV文件
+            // Open the CSV file from assets
             BufferedReader reader = new BufferedReader(
                     new InputStreamReader(getAssets().open("detail.csv"), "UTF-8"));
 
             String line;
-            // 读取CSV文件的每一行
+            // Read each line of the CSV file
             while ((line = reader.readLine()) != null) {
-                // 使用逗号分隔每一列
+                // Split each line by comma
                 String[] tokens = line.split(",");
-                Log.e("my", String.valueOf(tokens.length));
-                // 检查是否是要找的行
+                // Check if this is the row we are looking for
                 if (tokens.length > 5 && tokens[0].trim().equalsIgnoreCase(imageName)) {
-                    Log.e("my", "1");
                     details.put("imageName", tokens[0].trim());
                     details.put("title", tokens[1].trim());
                     details.put("subTitle", tokens[2].trim());
@@ -113,5 +105,4 @@ public class DetailActivity extends AppCompatActivity {
         }
         return details;
     }
-
 }

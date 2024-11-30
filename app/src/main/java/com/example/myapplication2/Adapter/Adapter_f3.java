@@ -27,7 +27,6 @@ public class Adapter_f3 extends RecyclerView.Adapter<Adapter_f3.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_f3, parent, false);
-
         return new ViewHolder(view);
     }
 
@@ -35,7 +34,7 @@ public class Adapter_f3 extends RecyclerView.Adapter<Adapter_f3.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Data_Sentence_f3 item = itemList.get(position);
-        holder.textView.setText(item.getTitle()); // 绑定设置数据
+        holder.textView.setText(item.getContent()); // 绑定设置数据
 
         //通过接口名调用方法
         holder.plus.setOnClickListener(new View.OnClickListener() {

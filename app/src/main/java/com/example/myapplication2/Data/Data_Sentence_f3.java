@@ -4,22 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Data_Sentence_f3 {
-    private String title;
 
-    public Data_Sentence_f3(String title) {
-        this.title = title;
+    private int Id;
+    private String content;
+
+    public Data_Sentence_f3(int Id,String content) {
+        this.Id= Id;
+        this.content=content;
     }
 
-    public String getTitle() {
-        return title;
+    public void setId(int Id) {
+        this.Id = Id;
     }
 
-    // 静态方法生成数据列表
-    public static List<Data_Sentence_f3> generateData(int count) {
-        List<Data_Sentence_f3> itemList = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            itemList.add(new Data_Sentence_f3("这是收藏的第 " + (i + 1)+" \n段文本")); // 示例数据
-        }
-        return itemList;
+    public void setContent(String content) {
+        this.content = content;
     }
+
+    public String getContent() {
+        return content;
+    }
+
 }
