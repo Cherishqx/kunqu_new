@@ -41,7 +41,7 @@ public class Sentences {
         if(list.length < 4){
             for (int i = 0; i < 4 - list.length; ++i) {
                 Map<String, Object> map = new HashMap<>();
-                map.put("exist",null);
+                map.put("sentence","");
                 listItem.add(map);
             }
         }

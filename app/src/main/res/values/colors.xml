@@ -8,4 +8,5 @@
     <color name="slategray">#708090</color> <!-- 灰石色 -->
     <color name="search_bg">#F2F0F0</color>
     <color name="theme_green">#61BAA7</color>
+    <color name="panel_color">#78121212</color>
 </resources>

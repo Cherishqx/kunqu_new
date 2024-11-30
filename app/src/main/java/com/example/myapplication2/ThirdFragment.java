@@ -75,7 +75,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
         // 跳转到 CreateActivity
         if (v.getId() == R.id.button3_1) {
             Intent intent = new Intent(getActivity(), CreateActivity.class);
-            intent.putExtra("sentence", " "); // 默认传递空字符串
+            intent.putExtra("sentence", "");
             startActivity(intent);
         }
     }

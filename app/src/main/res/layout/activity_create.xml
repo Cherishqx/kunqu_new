@@ -73,6 +73,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/start_create"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginHorizontal="10dp"
@@ -87,6 +88,64 @@
             android:layout_height="wrap_content"
             android:text="@string/confirm"
             android:textColor="@color/white"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/show_picture"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/panel_color"
+        android:visibility="invisible"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="550dp">
+
+            <ImageView
+                android:id="@+id/myImageView"
+                android:layout_width="300dp"
+                android:layout_gravity="center"
+                android:layout_height="400dp"
+                android:scaleType="fitCenter"
+                android:layout_marginTop="30dp"/>
+            <Button
+                android:id="@+id/close_button"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/theme_green"
+            android:layout_gravity="bottom"
+            android:gravity="bottom|center">
+            <Button
+                android:id="@+id/share_button"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="20dp"
+                android:text="@string/share"/>
+            <Button
+                android:id="@+id/download_button"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="20dp"
+                android:text="@string/download"/>
+            <Button
+                android:id="@+id/tome_button"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="20dp"
+                android:text="@string/toMe"/>
+        </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
