@@ -37,15 +37,16 @@ public class SecondFragment extends Fragment {
         // 设置点击事件监听器
         adapter.setOnItemClickListener(new Adapter_f2.OnItemClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
+            public void onItemClick(View view, int position, int imageIndex) {
                 // 处理点击事件，可以弹出 Toast 或做其他处理
                 Data_Knowledge_f2 item = itemList.get(position);
-                Toast.makeText(getContext(), "Clicked: " + item.getTitle(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Clicked: " + item.getTitle() + " Image Index: " + imageIndex, Toast.LENGTH_SHORT).show();
+
                 // 创建 Intent 跳转到 knowledge_activity
                 Intent intent = new Intent(getContext(), KnowledgeActivity.class);
 
                 // 将 typeId 作为额外数据传递
-                intent.putExtra("typeId", item.getTypeId());
+                intent.putExtra("type", item.getTypeId()+imageIndex);
 
                 // 启动目标活动
                 startActivity(intent);

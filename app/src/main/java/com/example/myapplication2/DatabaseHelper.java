@@ -1,5 +1,6 @@
 package com.example.myapplication2;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -31,14 +32,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             int count = cursor.getInt(0);
             if (count == 0) {
                 // 如果表中没有数据，则插入内置数据
-                MyDatabase.execSQL("insert into collections (Id, content) values (1, 'Initial Content 1')");
-                MyDatabase.execSQL("insert into collections (Id, content) values (2, 'Initial Content 2')");
-                MyDatabase.execSQL("insert into collections (Id, content) values (3, 'Initial Content 3')");
-                MyDatabase.execSQL("insert into collections (Id, content) values (4, 'Initial Content 4')");
-                MyDatabase.execSQL("insert into collections (Id, content) values (5, 'Initial Content 5')");
-                MyDatabase.execSQL("insert into collections (Id, content) values (6, 'Initial Content 6')");
-                MyDatabase.execSQL("insert into collections (Id, content) values (7, 'Initial Content 7')");
-                MyDatabase.execSQL("insert into collections (Id, content) values (8, 'Initi12al Content 8')");
+                MyDatabase.execSQL("insert into collections (Id, content) values (1, '情不知所起， 一往而深，\n" +
+                        "生者可以死，死可以生。 \n" +
+                        "        ——《牡丹亭》')");
+                MyDatabase.execSQL("insert into collections (Id, content) values (2, '此生终老温柔，白云不羡仙乡，\n惟愿取恩情美满，地久天长。\n    ————《长生殿》')");
+                MyDatabase.execSQL("insert into collections (Id, content) values (3, '长梦不多时，短梦无碑记。普天下梦南柯人似蚁。\n    ————《南柯记》')");
+                MyDatabase.execSQL("insert into collections (Id, content) values (4, '满天涯烟草断人肠怕催花信紧，\n风风雨雨，误了春光。\n    ————《桃花扇》')");
+                MyDatabase.execSQL("insert into collections (Id, content) values (5, '北雁南飞。晓来谁染霜林醉？总是离人泪。\n    ————《西厢记》')");
+                MyDatabase.execSQL("insert into collections (Id, content) values (6, '誓海盟山永不移，\n从今孽债染缁衣。\n    ————《玉簪记》')");
             }
             cursor.close();
         }
@@ -88,16 +89,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    // 插入数据到 collections 表
-    public Boolean insertCollection(int Id, String content) {
+    // 插入数据到 collections 表，并返回新的插入的 Id
+    public int insertCollection(String content) {
         SQLiteDatabase MyDatabase = this.getWritableDatabase();
+
+        // 查询最大 Id
+        Cursor cursor = MyDatabase.rawQuery("SELECT MAX(Id) FROM collections", null);
+        int newId = 1; // 默认从 1 开始，如果表为空，则 newId 为 1
+
+        if (cursor != null && cursor.moveToFirst()) {
+            // 获取当前最大 Id，如果有数据就加 1，否则新插入的记录将使用 Id = 1
+            newId = cursor.getInt(0) + 1;
+            cursor.close();
+        }
+
+        // 插入新数据
         ContentValues contentValues = new ContentValues();
-        contentValues.put("Id", Id);
+        contentValues.put("Id", newId);
         contentValues.put("content", content);
+
         long result = MyDatabase.insert("collections", null, contentValues);
 
-        return result != -1;
+        // 如果插入失败，则返回 -1，否则返回新插入数据的 Id
+        return result != -1 ? newId : -1;
     }
+
+
 
     // 查询指定 Id 的 collection 数据
     public Cursor getCollectionById(int Id) {
@@ -127,4 +144,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int result = MyDatabase.delete("collections", "Id = ?", new String[]{String.valueOf(Id)});
         return result > 0;
     }
+
+    public Boolean updateAllIds() {
+        SQLiteDatabase MyDatabase = this.getWritableDatabase();
+
+        // 更新所有数据的 Id，按原来的顺序递增
+        Cursor cursor = MyDatabase.rawQuery("SELECT * FROM collections ORDER BY Id DESC", null);
+        int index = 1; // 从 1 开始递增
+        boolean success = true;
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                @SuppressLint("Range") int currentId = cursor.getInt(cursor.getColumnIndex("Id"));
+                ContentValues contentValues = new ContentValues();
+                contentValues.put("Id", index);
+                int result = MyDatabase.update("collections", contentValues, "Id = ?", new String[]{String.valueOf(currentId)});
+                if (result == 0) {
+                    success = false;
+                    break;
+                }
+                index++;
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+
+        return success;
+    }
+
 }

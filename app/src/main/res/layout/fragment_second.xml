@@ -2,7 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     tools:context=".SecondFragment">
 
@@ -44,15 +44,15 @@
 
     <GridView
         android:id="@+id/f2_GridView"
-        android:layout_width="401dp"
+        android:layout_width="wrap_content"
         android:layout_height="757dp"
         android:horizontalSpacing="20dp"
-        android:numColumns="2"
+        android:numColumns="1"
         android:verticalSpacing="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_space"
         app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="6dp" />
+       />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
