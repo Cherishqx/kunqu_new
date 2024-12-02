@@ -44,15 +44,11 @@
 
     <GridView
         android:id="@+id/f2_GridView"
-        android:layout_width="wrap_content"
-        android:layout_height="757dp"
-        android:horizontalSpacing="20dp"
-        android:numColumns="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:verticalSpacing="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_space"
-        app:layout_constraintVertical_bias="0.0"
-       />
+        app:layout_constraintTop_toBottomOf="@+id/search_space" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
