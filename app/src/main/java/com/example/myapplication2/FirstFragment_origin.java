@@ -20,6 +20,7 @@ import com.example.myapplication2.Data.Data_Knowledge_f2;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class FirstFragment_origin extends Fragment {
 
@@ -130,7 +131,7 @@ public class FirstFragment_origin extends Fragment {
             Data_Knowledge_f2 item = randomKnowledgeItems.get(i);
             List<Integer> imageResources = item.getImageResources();
 
-            // 只添加第一个ImageButton
+            // 为每个知识卡片创建一个ImageButton，并随机选择一个图片资源
             if (!imageResources.isEmpty()) {
                 ImageButton imageButton = new ImageButton(view.getContext());
                 int sizeInPx = (int) (120 * view.getContext().getResources().getDisplayMetrics().density);
@@ -139,10 +140,13 @@ public class FirstFragment_origin extends Fragment {
                 params.setMargins(0, 20, 20, 20);
                 imageButton.setLayoutParams(params);
                 imageButton.setScaleType(ImageView.ScaleType.FIT_XY);
-                imageButton.setImageResource(imageResources.get(0));
+
+                // 随机选择一个图片资源
+                int randomIndex = new Random().nextInt(imageResources.size());
+                imageButton.setImageResource(imageResources.get(randomIndex));
                 llKnowledgeCards.addView(imageButton);
 
-                final int index = 0;
+                final int index = randomIndex;
                 imageButton.setOnClickListener(v -> {
                     Intent intent = new Intent(getContext(), KnowledgeActivity.class);
                     intent.putExtra("type", item.getTypeId() + index);
