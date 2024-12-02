@@ -90,62 +90,59 @@
             android:textColor="@color/white"/>
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/show_picture"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/panel_color"
         android:visibility="invisible"
         android:orientation="vertical">
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="550dp">
-
-            <ImageView
-                android:id="@+id/myImageView"
-                android:layout_width="300dp"
-                android:layout_gravity="center"
-                android:layout_height="400dp"
-                android:scaleType="fitCenter"
-                android:layout_marginTop="30dp"/>
+            android:layout_height="match_parent">
             <Button
                 android:id="@+id/close_button"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="30dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
                 android:layout_gravity="center"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 />
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/myImageView"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"/>
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/theme_green"
-            android:layout_gravity="bottom"
-            android:gravity="bottom|center">
+            android:layout_height="70dp"
+            android:layout_alignParentBottom="true"
+            android:gravity="center">
             <Button
                 android:id="@+id/share_button"
                 android:layout_width="60dp"
+                android:layout_marginHorizontal="30dp"
                 android:layout_height="60dp"
-                android:layout_margin="20dp"
                 android:text="@string/share"/>
             <Button
                 android:id="@+id/download_button"
                 android:layout_width="60dp"
+                android:layout_marginHorizontal="30dp"
                 android:layout_height="60dp"
-                android:layout_margin="20dp"
                 android:text="@string/download"/>
             <Button
                 android:id="@+id/tome_button"
                 android:layout_width="60dp"
+                android:layout_marginHorizontal="30dp"
                 android:layout_height="60dp"
-                android:layout_margin="20dp"
                 android:text="@string/toMe"/>
         </LinearLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,9 +13,8 @@ import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
-
 import androidx.core.content.res.ResourcesCompat;
-
+import java.util.Calendar;
 import com.example.myapplication2.R;
 
 import java.io.File;
@@ -24,64 +23,164 @@ import java.io.IOException;
 import java.util.List;
 
 public class PictureCreate {
-    private int height = 1000;
-    private int width = 800;
+    private int height = 1800;
+    private int width = 1000;
     private Context context;
     private List<String> inputTexts;
     private int imageId;
     Bitmap bitmap;
+
+    String year;
+    String date;
+    String tgdz;
+    String jieqi;
+    String holiday;
 
     // 构造函数，传递上下文、输入文本列表和图片资源ID
     public PictureCreate(Context context, List<String> inputTexts, int imageId) {
         this.context = context;
         this.inputTexts = inputTexts;
         this.imageId = imageId;
-        createAndSaveFile();
+
+        Calendar calendar = Calendar.getInstance();
+        year = String.valueOf(calendar.get(Calendar.YEAR));
+        int month = calendar.get(Calendar.MONTH) + 1; // 月份从 0 开始，所以要加 1
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        date = String.format("%02d", month)+"月"+String.format("%02d", day) + "日";
+        tgdz = CalendarUtil.getCyclical();
+        jieqi = CalendarUtil.getTwenty_tour();
+        holiday = CalendarUtil.getHoliday();
+
+        method1();
     }
 
     // 创建图片并保存为文件
-    public void createAndSaveFile() {
+    public void method1() {
         // 创建一个空白Bitmap
         bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
-        Paint paint = new Paint();
-        paint.setAntiAlias(true); // 抗锯齿
+        Paint textPaint = new Paint();
+        textPaint.setAntiAlias(true); // 抗锯齿
 
         // 设置背景色
         canvas.drawColor(Color.WHITE);
+        Bitmap image = BitmapFactory.decodeResource(context.getResources(), R.drawable.paper_texture);
+        // 获取原始图片资源
+        if (image != null) {
+            // 按比例绘制图片
+            canvas.drawBitmap(image, null, new Rect(0, 0, width, height), null);
+        }
 
-        // 设置字体
-        Typeface typeface = ResourcesCompat.getFont(context, R.font.islide);
-        paint.setTypeface(typeface); // 应用自定义字体
-        paint.setColor(Color.BLACK);
-        paint.setTextSize(35);
+        /* 右上角的日期 */
+        // 日期文字
+        textPaint.setColor(Color.BLACK);
+        textPaint.setTextSize(40); // 设置文字大小
+        Typeface typeface = ResourcesCompat.getFont(context, R.font.qijic);
+        textPaint.setTypeface(Typeface.create(typeface, Typeface.BOLD));
+        textPaint.setTextAlign(Paint.Align.RIGHT); // 设置文字右对齐
+
+        // 横线
+        Paint linePaint = new Paint();
+        linePaint.setColor(Color.BLACK);
+        linePaint.setStrokeWidth(5); // 设置线条宽度
+
+        // 绘制内容
+        canvas.drawText(tgdz, 945, 200, textPaint); // 从右对齐的 945 坐标开始
+        canvas.drawText(year, 945, 250, textPaint);
+        canvas.drawLine(697, 150, 945, 150, linePaint); // 绘制横线
+        textPaint.setColor(Color.argb(255,50,50,50));
+        canvas.drawText(date, 945, 120, textPaint);
+
+        textPaint.setTextSize(150);
+        textPaint.setTextAlign(Paint.Align.LEFT);
+        canvas.drawText(jieqi+holiday, 40, 180, textPaint);
+
+        image = BitmapFactory.decodeResource(context.getResources(), R.drawable.ink_box_shu);
+        // 获取原始图片资源
+        if (image != null) {
+            // 按比例绘制图片
+            canvas.drawBitmap(image, null, new Rect(200, 240, 800, height-400), null);
+        }
+
+        image = BitmapFactory.decodeResource(context.getResources(), R.drawable.taohua);
+        // 获取原始图片资源
+        if (image != null) {
+            // 按比例绘制图片
+            canvas.drawBitmap(image, null, new Rect(70, 700, 920, height-300), null);
+        }
+
 
         // 加载资源图片并绘制
-        Bitmap image = BitmapFactory.decodeResource(context.getResources(), imageId);
+        image = BitmapFactory.decodeResource(context.getResources(), imageId);
+        // 获取原始图片资源
         if (image != null) {
-            canvas.drawBitmap(image, null, new Rect(150, 610, 340, 900), null);
-        }
+            // 获取图片的宽高
+            int originalWidth = image.getWidth();
+            int originalHeight = image.getHeight();
 
-        // 绘制文字
-        int x = 650; // X坐标，确定文字的起始水平位置
-        int y = 100; // 初始Y坐标
-        for (String text : inputTexts) {
-            Log.e("111", text);
+            // 目标矩形的尺寸
+            int targetLeft = 700;
+            int targetTop = 1400;
+            int targetRight = 930; // 初始宽度：340 - 130 = 210
+            int targetBottom = 1800; // 初始高度：900 - 600 = 300
 
-            // 逐个字符绘制竖向文字
-            for (int i = 0; i < text.length(); i++) {
-                // 计算每个字符的X、Y位置
-                float charX = x;
-                float charY = y + i * 50; // 每个字符纵向间隔50px
+            // 计算目标宽高
+            int targetWidth = targetRight - targetLeft;
+            int targetHeight = targetBottom - targetTop;
 
-                // 绘制当前字符
-                canvas.drawText(String.valueOf(text.charAt(i)), charX, charY, paint);
+            // 按图片的宽高比调整目标矩形的尺寸
+            float originalAspectRatio = (float) originalWidth / originalHeight;
+            float targetAspectRatio = (float) targetWidth / targetHeight;
+
+            if (originalAspectRatio > targetAspectRatio) {
+                // 图片更宽，调整高度
+                targetHeight = (int) (targetWidth / originalAspectRatio);
+                targetBottom = targetTop + targetHeight;
+            } else {
+                // 图片更高，调整宽度
+                targetWidth = (int) (targetHeight * originalAspectRatio);
+                targetRight = targetLeft + targetWidth;
             }
 
-            // 为下一个字符串调整Y坐标
-            y += 20;// 每个字符串之间的纵向间隔
-            x -= 100;
+            // 按比例绘制图片
+            canvas.drawBitmap(image, null, new Rect(targetLeft, targetTop, targetRight, targetBottom), null);
         }
+
+        /* 收藏的句子 */
+        // 设置字体
+        typeface = ResourcesCompat.getFont(context, R.font.qijic);
+        textPaint.setTypeface(Typeface.create(typeface, Typeface.BOLD)); // 应用自定义字体
+        textPaint.setColor(Color.BLACK);
+        textPaint.setTextSize(70);
+
+        // 绘制文字
+        int x = 700; // X坐标，确定文字的起始水平位置
+        for (String text : inputTexts) {
+            // 预处理文本
+            int y = 350; // 初始Y坐标
+            text = text.replaceAll("—|-|——|《|》| ", ""); // 删除 "——" 和 "《》"
+            String[] lines = text.split("[，。]"); // 根据逗号和句号分割文本
+
+            for (String line : lines) {
+                Log.e("111", line);
+
+                // 逐个字符绘制竖向文字
+                for (int i = 0; i < line.length(); i++) {
+                    // 计算每个字符的 X、Y 位置
+                    float charX = x;
+                    float charY = y + i * 70; // 每个字符纵向间隔 70px
+
+                    // 绘制当前字符
+                    canvas.drawText(String.valueOf(line.charAt(i)), charX, charY, textPaint);
+                }
+
+                // 换行处理
+                y += line.length() * 80; // 按照当前段落长度计算 Y 偏移量
+            }
+
+            x -= 100; // 每个输入文本 X 偏移量
+        }
+
     }
 
     public Bitmap getBitmap(){

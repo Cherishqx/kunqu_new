@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,7 +40,7 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
     //创建好图片和不能点击的三个部分
     LinearLayout l1;
     LinearLayout l2;
-    LinearLayout linearLayout;
+    RelativeLayout linearLayout;
 
     Button closeButton;
     Button toMeButton;
@@ -169,6 +170,7 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
         }
         if (view.getId() == R.id.download_button){
             pictureCreate.saveBitmapToFile(bitmap);
+            Toast.makeText(this,"已保存到相册", Toast.LENGTH_LONG).show();
         }
     }
 }
