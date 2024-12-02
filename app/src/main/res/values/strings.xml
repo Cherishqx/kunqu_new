@@ -65,5 +65,6 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="sign_up">Sign Up</string>
     <string name="loginRedirectText">Already an user? login</string>
+    <string name="knowledge_rec">知识推荐</string>
 
 </resources>
