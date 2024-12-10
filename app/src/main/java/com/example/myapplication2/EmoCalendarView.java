@@ -46,43 +46,44 @@ public class EmoCalendarView extends CalendarView {
         init(context);
     }
 
+    // 初始化方法
     private void init(Context context) {
         dateImages = new HashMap<>();
-        imageSize = dpToPx(context, 38); // Convert 38dp to pixels
-        margin = dpToPx(context, 20); // Convert 20dp to pixels
-        cellSpacing = dpToPx(context, 5); // Convert 5dp to pixels
+        imageSize = dpToPx(context, 38); // 将38dp转换为像素
+        margin = dpToPx(context, 20); // 将20dp转换为像素
+        cellSpacing = dpToPx(context, 5); // 将5dp转换为像素
 
         selectedDatePaint = new Paint();
-        selectedDatePaint.setColor(Color.RED); // Set selected date background color
+        selectedDatePaint.setColor(Color.RED); // 设置选中日期的背景颜色
 
         dateTextPaint = new Paint();
-        dateTextPaint.setColor(Color.BLACK); // Set date text color
-        dateTextPaint.setTextSize(dpToPx(context, 16)); // Set date text size
+        dateTextPaint.setColor(Color.BLACK); // 设置日期文本颜色
+        dateTextPaint.setTextSize(dpToPx(context, 16)); // 设置日期文本大小
 
         Calendar calendar = Calendar.getInstance();
         currentMonth = calendar.get(Calendar.MONTH);
         currentYear = calendar.get(Calendar.YEAR);
 
-        // Set the calendar to the first day of the current month
+        // 将日历设置为当前月的第一天
         calendar.set(Calendar.DAY_OF_MONTH, 1);
         long minDate = calendar.getTimeInMillis();
 
-        // Set the calendar to the last day of the current month
+        // 将日历设置为当前月的最后一天
         calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
         long maxDate = calendar.getTimeInMillis();
 
-        // Set the min and max date to restrict the calendar to the current month
+        // 设置最小和最大日期以限制日历到当前月
         setMinDate(minDate);
         setMaxDate(maxDate);
 
-        // Get screen density
+        // 获取屏幕密度
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         screenDensity = displayMetrics.densityDpi;
 
         setOnDateChangeListener(new OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                Log.d(TAG, "Date clicked: " + dayOfMonth);
+                Log.d(TAG, "点击的日期: " + dayOfMonth);
                 if (onDateClickListener != null) {
                     onDateClickListener.onDateClick(dayOfMonth);
                 }
@@ -95,6 +96,7 @@ public class EmoCalendarView extends CalendarView {
         });
     }
 
+    // 绘制方法
     @Override
     protected void dispatchDraw(@NonNull Canvas canvas) {
         super.dispatchDraw(canvas);
@@ -104,26 +106,26 @@ public class EmoCalendarView extends CalendarView {
         int currentMonth = currentCalendar.get(Calendar.MONTH);
         int currentYear = currentCalendar.get(Calendar.YEAR);
 
-        // Draw each date cell's image
+        // 绘制每个日期单元格的图像
         for (Map.Entry<String, Drawable> entry : dateImages.entrySet()) {
             String date = entry.getKey();
             Drawable image = entry.getValue();
             int day = Integer.parseInt(date);
 
-            // Calculate the week and day of the week for the given date
+            // 计算给定日期的周和星期几
             Calendar calendar = Calendar.getInstance();
             calendar.set(Calendar.DAY_OF_MONTH, day);
             int weekOfMonth = calendar.get(Calendar.WEEK_OF_MONTH);
-            int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK) - 1; // Adjust to 0-based index (Sunday = 0)
+            int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK) - 1; // 调整为0基索引（星期天=0）
 
-            // Check if the date is in the current month
+            // 检查日期是否在当前月
             if (calendar.get(Calendar.MONTH) == currentMonth && calendar.get(Calendar.YEAR) == currentYear) {
                 float cellWidth = (getWidth() - 2 * margin - 6 * cellSpacing) / 7f;
-                float cellHeight = dpToPx(getContext(), 41); // Each date row is 41dp high
-                float x = margin + dayOfWeek * (cellWidth + cellSpacing) + (cellWidth - imageSize) / 2; // Center the image horizontally
-                float y = dpToPx(getContext(), 98) + (weekOfMonth - 1) * cellHeight + (cellHeight - imageSize) / 2; // Center the image vertically, starting from the third row
+                float cellHeight = dpToPx(getContext(), 41); // 每个日期行高41dp
+                float x = margin + dayOfWeek * (cellWidth + cellSpacing) + (cellWidth - imageSize) / 2; // 水平居中图像
+                float y = dpToPx(getContext(), 98) + (weekOfMonth - 1) * cellHeight + (cellHeight - imageSize) / 2; // 垂直居中图像，从第三行开始
 
-                // Adjust y position based on screen density and row
+                // 根据屏幕密度和行调整y位置
                 if (screenDensity == DisplayMetrics.DENSITY_XXHIGH) { // 480 dpi
                     switch (weekOfMonth) {
                         case 1:
@@ -143,7 +145,7 @@ public class EmoCalendarView extends CalendarView {
                             break;
                     }
 
-                    // Adjust x position based on column
+                    // 根据列调整x位置
                     switch (dayOfWeek) {
                         case 0:
                             x += dpToPx(getContext(), 7);
@@ -166,34 +168,44 @@ public class EmoCalendarView extends CalendarView {
                     }
                 }
 
-                // Additional adjustment for API level >= 34
+//                y -= dpToPx(getContext(), 41); // 调整y位置，位置不对就调这条
+
+                // 额外调整API级别
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE && dayOfWeek == 0) {
-                    y += dpToPx(getContext(), 41);
+                    if (Build.VERSION.SDK_INT == 34) {
+                        y += dpToPx(getContext(), 41);
+                    } else if (Build.VERSION.SDK_INT == 35) {
+                        y -= dpToPx(getContext(), 41);
+                    }
                 }
 
-                Log.d(TAG, "Drawing image for date: " + date + " at position: (" + x + ", " + y + ")");
-                image.setBounds((int) x, (int) y, (int) (x + imageSize), (int) (y + imageSize)); // Set size to 38dp x 38dp
+                Log.d(TAG, "绘制日期图像: " + date + " 位置: (" + x + ", " + y + ")");
+                image.setBounds((int) x, (int) y, (int) (x + imageSize), (int) (y + imageSize)); // 设置大小为38dp x 38dp
                 image.draw(canvas);
             }
         }
     }
 
+    // 设置日期图像
     public void setDateImage(String date, Drawable image) {
-        Log.d(TAG, "Setting image for date: " + date);
+        Log.d(TAG, "设置日期图像: " + date);
         dateImages.put(date, image);
-        invalidate(); // Redraw the view
+        invalidate(); // 重绘视图
     }
 
+    // 设置日期点击监听器
     public void setOnDateClickListener(OnDateClickListener listener) {
         this.onDateClickListener = listener;
     }
 
-    public interface OnDateClickListener {
-        void onDateClick(int day);
-    }
-
+    // 将dp转换为像素
     private int dpToPx(Context context, int dp) {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+    }
+
+    // 日期点击监听器接口
+    public interface OnDateClickListener {
+        void onDateClick(int day);
     }
 }

@@ -4,40 +4,41 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import android.widget.GridView;
 
-import com.example.myapplication2.Adapter.FavoriteAdapter;
+import androidx.fragment.app.Fragment;
+
+import com.example.myapplication2.Adapter.ImageItemAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class FavoritesFragment extends Fragment {
 
-    private RecyclerView favoritesRecyclerView;
-    private FavoriteAdapter favoriteAdapter;
-    private List<FavoriteItem> favoriteItems;
+    private GridView gridView;
+    private ImageItemAdapter adapter;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_favorites, container, false);
 
-        favoritesRecyclerView = view.findViewById(R.id.favorites_recycle);
-        favoritesRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        gridView = view.findViewById(R.id.gridview_favorites);
+        adapter = new ImageItemAdapter(getContext(), new ArrayList<>(FavoritesManager.getFavoriteItems()));
+        gridView.setAdapter(adapter);
 
-        favoriteItems = new ArrayList<>();
-        // Add some sample data
-        favoriteItems.add(new FavoriteItem("《白蛇传》", R.drawable.mine1, R.drawable.ic_favorite));
-        favoriteItems.add(new FavoriteItem("《牡丹亭》", R.drawable.mine2, R.drawable.ic_favorite));
-        favoriteItems.add(new FavoriteItem("《西厢记》", R.drawable.mine3, R.drawable.ic_favorite));
-
-        favoriteAdapter = new FavoriteAdapter(favoriteItems);
-        favoritesRecyclerView.setAdapter(favoriteAdapter);
+        adapter.setOnFavoriteChangeListener(this::refreshFavorites);
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        refreshFavorites();
+    }
+
+    private void refreshFavorites() {
+        adapter.clear();
+        adapter.addAll(FavoritesManager.getFavoriteItems());
+        adapter.notifyDataSetChanged();
     }
 }
