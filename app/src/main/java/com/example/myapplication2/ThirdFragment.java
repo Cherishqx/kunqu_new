@@ -1,138 +1,110 @@
 package com.example.myapplication2;
 
-import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.Toast;
-
+import android.widget.EditText;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapplication2.Adapter.Adapter_f3;
-import com.example.myapplication2.Data.Data_Sentence_f3;
-import com.example.myapplication2.DatabaseHelper;
-
-import java.util.ArrayList;
+import com.example.myapplication2.Adapter.Sentence_f3_Adapter;
+import com.example.myapplication2.Data.Sentence;
 import java.util.List;
 
-public class ThirdFragment extends Fragment implements View.OnClickListener {
-    private RecyclerView recyclerView;
-    private Adapter_f3 adapter;
-    private List<Data_Sentence_f3> itemList;
-    private String sentences;
-    private DatabaseHelper databaseHelper;
-    ImageView createButton;
-    ImageView addButton;
+public class ThirdFragment extends Fragment {
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        databaseHelper = new DatabaseHelper(getContext()); // 初始化 DatabaseHelper
-    }
+    private ImageButton button3_1,button_add_data;
+    private RecyclerView recyclerView;
+    private DatabaseHelper myDataHelper;
+    private Sentence_f3_Adapter sentenceAdapter;
+    private List<Sentence> sentenceList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the fragment layout
         View view = inflater.inflate(R.layout.fragment_third, container, false);
 
-        // 初始化 RecyclerView
-        recyclerView = view.findViewById(R.id.recyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext())); // 设置布局管理器
-        addButton = view.findViewById(R.id.button_add_data);
-        addButton.setOnClickListener(this); // 设置点击监听器
+        // 初始化视图
+        button3_1=view.findViewById(R.id.button3_1);
+        button_add_data = view.findViewById(R.id.button_add_data);
+        recyclerView = view.findViewById(R.id.recyclerview); // 使用 RecyclerView
+        myDataHelper = new DatabaseHelper(getActivity());
 
-        // 从数据库中获取数据
-        itemList = getCollectionsFromDatabase(); // 获取 collections 表的数据
+        // 设置 RecyclerView 布局管理器
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        // 设置适配器
-        adapter = new Adapter_f3(itemList);
-        adapter.setOnItemClickListener(new Adapter_f3.OnItemClickListener() {
+        // 初始化适配器
+        sentenceList = myDataHelper.getAll();
+        sentenceAdapter = new Sentence_f3_Adapter(getActivity(), sentenceList);
+        recyclerView.setAdapter(sentenceAdapter);
+
+        // 设置添加按钮的点击事件
+        button_add_data.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
-                sentences = itemList.get(position).getContent(); // 获取内容
-                // 跳转到详情页
-                Intent intent = new Intent(getActivity(), CreateActivity.class);
-                // 传递内容
-                intent.putExtra("sentence", sentences);
-                intent.putExtra("hasSentence", true);
-                startActivity(intent);
+            public void onClick(View view) {
+                // 弹出输入框，获取用户输入的内容
+                final EditText input = new EditText(getActivity());
+                input.setHint("请输入内容");
+
+                // 创建对话框
+                AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                dialog.setTitle("输入内容");
+                dialog.setView(input);  // 设置输入框
+                dialog.setPositiveButton("添加", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String userInput = input.getText().toString();
+                        if (!userInput.isEmpty()) {
+                            // 获取用户输入的内容，创建 Sentence 对象
+                            Sentence sentence = new Sentence(-1, userInput);
+
+                            // 调用数据管理类的 addOne 方法将数据添加到数据库
+                            String result = myDataHelper.addOne(sentence);
+
+                            // 显示 Toast 提示
+                            Toast.makeText(getActivity(), "添加: " + result, Toast.LENGTH_SHORT).show();
+
+                            // 刷新 RecyclerView
+                            sentenceList.clear(); // 清空当前列表
+                            sentenceList.addAll(myDataHelper.getAll()); // 获取更新后的数据
+                            sentenceAdapter.notifyDataSetChanged(); // 通知适配器刷新
+                        } else {
+                            Toast.makeText(getActivity(), "请输入内容！", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                dialog.setNegativeButton("取消", null);
+                // 显示对话框
+                dialog.show();
             }
         });
-        recyclerView.setAdapter(adapter); // 设置 RecyclerView 的适配器
 
-        createButton = view.findViewById(R.id.button3_1);
-        createButton.setOnClickListener(this); // 设置按钮点击监听器
-        return view; // 返回视图
+        // 给 button3_1 添加点击事件
+        button3_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CreateActivity.class);
+                intent.putExtra("sentence", "");
+                startActivity(intent);
+                Toast.makeText(getActivity(), "button3_1 被点击", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        return view;
     }
 
-    @Override
-    public void onClick(View v) {
-        // 处理添加数据按钮点击事件
-        if (v.getId() == R.id.button_add_data) {
-            // 创建一个输入框
-            final EditText inputField = new EditText(getContext());
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setTitle("请输入内容")
-                    .setView(inputField) // 设置输入框视图
-                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            String content = inputField.getText().toString().trim();
-                            if (!content.isEmpty()) {
-                                // 调用 insertCollection 插入数据
-                                int newId = databaseHelper.insertCollection(content);
-
-                                // 如果插入成功，更新 RecyclerView
-                                if (newId != -1) {
-                                    // 新插入的数据已经有了 Id，无需重新获取最大 Id
-                                    // 更新 itemList
-                                    itemList.add(new Data_Sentence_f3(newId, content));
-
-                                    // 通知适配器更新数据
-                                    adapter.notifyItemInserted(itemList.size() - 1);  // 只更新插入的项
-                                }
-                            } else {
-                                Toast.makeText(getContext(), "输入内容不能为空", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    })
-                    .setNegativeButton("取消", null)
-                    .show();
-        }
-
-
-        // 创建按钮的点击事件
-        if (v.getId() == R.id.button3_1) {
-            Intent intent = new Intent(getActivity(), CreateActivity.class);
-            intent.putExtra("sentence", "");
-            startActivity(intent);
-        }
-    }
-
-    // 从数据库中获取数据
-    private List<Data_Sentence_f3> getCollectionsFromDatabase() {
-        List<Data_Sentence_f3> collections = new ArrayList<>();
-        // 查询数据库并获取数据
-        Cursor cursor = databaseHelper.getAllCollections(); // 使用数据库助手获取所有数据
-        if (cursor != null && cursor.moveToFirst()) {
-            do {
-                @SuppressLint("Range") int Id = cursor.getInt(cursor.getColumnIndex("Id"));
-                @SuppressLint("Range") String content = cursor.getString(cursor.getColumnIndex("content"));
-                collections.add(new Data_Sentence_f3(Id, content)); // 添加到列表
-            } while (cursor.moveToNext());
-        }
-        return collections;
+    // 用于刷新 RecyclerView，显示所有数据
+    private void viewAll() {
+        sentenceList = myDataHelper.getAll();
+        sentenceAdapter.notifyDataSetChanged(); // 更新适配器数据
     }
 }
