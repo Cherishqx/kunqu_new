@@ -51,4 +51,12 @@ public class FavoritesManager {
         editor.putString(FAVORITES_KEY, json);
         editor.apply();
     }
+
+
+    // Method to get favorite cards
+    public static List<ImageItem> getFavoriteCards() {
+        // Return a list of favorite cards
+        return new ArrayList<>();
+    }
+
 }

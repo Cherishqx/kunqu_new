@@ -66,6 +66,7 @@ public class ImageItemAdapter extends BaseAdapter {
             Intent intent = new Intent(context, DetailActivity.class);
             intent.putExtra("imageName", item.getImageName());
             context.startActivity(intent);
+
         });
 
         imageButtonFavorite.setOnClickListener(v -> {
@@ -98,4 +99,6 @@ public class ImageItemAdapter extends BaseAdapter {
     public interface OnFavoriteChangeListener {
         void onFavoriteChanged();
     }
+
+
 }

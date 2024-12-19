@@ -9,18 +9,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication2.Adapter.ImageItemAdapter;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class MusicLibraryActivity extends AppCompatActivity {
+    private GridView gridView;
+    private ImageItemAdapter adapter;
+    private List<ImageItem> items; // 将 items 声明为类的成员变量
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music_library);
-        GridView gridView = findViewById(R.id.myGridView);
+        gridView = findViewById(R.id.myGridView);
 
         // 创建数据列表
-        List<ImageItem> items = new ArrayList<>();
+        items = new ArrayList<>();
         items.add(new ImageItem(R.drawable.music_library_1, "艳云亭", "简介：讲述的是书生洪绘与枢密使萧凤韶之女惜芬几经波折，终于结为夫妇的爱情故事，共三十二出。", "music_library_1"));
         items.add(new ImageItem(R.drawable.music_library_2, "玉簪记", "简介：讲述的是宋代书生潘必正与女道士陈妙常的恋爱故事，共三十三出。", "music_library_2"));
         items.add(new ImageItem(R.drawable.music_library_3, "跃鲤记", "简介：讲述的是汉代姜诗的妻子庞三娘躬行妇道、侍奉婆婆的故事，共四十二折，无折目。", "music_library_3"));
@@ -39,7 +44,7 @@ public class MusicLibraryActivity extends AppCompatActivity {
         items.add(new ImageItem(R.drawable.music_library_16, "红楼梦", "简介：全剧分为上下两本，总历时5个小时。", "music_library_16"));
 
         // 设置适配器
-        ImageItemAdapter adapter = new ImageItemAdapter(this, items);
+        adapter = new ImageItemAdapter(this, items);
         gridView.setAdapter(adapter);
 
         gridView.setOnItemClickListener((parent, view, position, id) -> {
@@ -50,7 +55,32 @@ public class MusicLibraryActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-
+        // 刷新收藏状态
+        refreshFavorites();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refreshFavorites();
+    }
+
+    private void refreshFavorites() {
+        List<ImageItem> favoriteItems = FavoritesManager.getFavoriteItems();
+        Set<String> favoriteItemNames = new HashSet<>();
+        for (ImageItem item : favoriteItems) {
+            favoriteItemNames.add(item.getImageName());
+        }
+
+        List<ImageItem> allItems = new ArrayList<>(favoriteItems);
+        for (ImageItem item : items) {
+            if (!favoriteItemNames.contains(item.getImageName())) {
+                allItems.add(item);
+            }
+        }
+
+        adapter.clear();
+        adapter.addAll(allItems);
+        adapter.notifyDataSetChanged();
+    }
 }

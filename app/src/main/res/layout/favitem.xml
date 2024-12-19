@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_margin="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="8dp"
-    android:layout_margin="12dp"
-    android:background="@drawable/theme_corners_bg">
+    android:background="@color/theme_green">
 
     <ImageView
-        android:id="@+id/imageView_musicLibrary"
-        android:layout_width="match_parent"
+        android:id="@+id/fav_ml_img"
+        android:layout_width="150dp"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
         android:clipToOutline="true"
@@ -19,7 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
-        android:id="@+id/titleTextView"
+        android:id="@+id/fav_ml_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -27,12 +27,12 @@
         android:fontFamily="@font/jx"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@id/imageButton_favorite"
+        app:layout_constraintEnd_toStartOf="@id/fav_ml_imgbt"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView_musicLibrary" />
+        app:layout_constraintTop_toBottomOf="@id/fav_ml_img" />
 
     <ImageButton
-        android:id="@+id/imageButton_favorite"
+        android:id="@+id/fav_ml_imgbt"
         android:layout_marginTop="10dp"
         android:layout_width="36dp"
         android:layout_height="36dp"
@@ -41,9 +41,9 @@
         android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
-        android:src="@drawable/music_favorite_selector"
-        app:layout_constraintTop_toBottomOf="@id/imageView_musicLibrary"
+        android:src="@drawable/music_favorite"
+        app:layout_constraintTop_toBottomOf="@id/fav_ml_img"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/titleTextView"/>
+        app:layout_constraintBottom_toBottomOf="@id/fav_ml_text"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
