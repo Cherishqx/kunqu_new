@@ -29,7 +29,6 @@
         android:clipToOutline="true"
         app:layout_constraintVertical_bias="1.0">
 
-
         <VideoView
             android:id="@+id/video_view"
             android:layout_width="match_parent"
