@@ -1,9 +1,11 @@
 package com.example.myapplication2.Adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,18 +15,22 @@ import com.example.myapplication2.R;
 
 import java.util.List;
 
-public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHolder> {
+public class Fav_ML_Adapter extends RecyclerView.Adapter<Fav_ML_Adapter.ViewHolder> {
 
     private List<FavoriteItem> favoriteItems;
+    private Context context;
+    private LinearLayout favMlContainer;
 
-    public FavoriteAdapter(List<FavoriteItem> favoriteItems) {
+    public Fav_ML_Adapter(Context context, List<FavoriteItem> favoriteItems, LinearLayout favMlContainer) {
+        this.context = context;
         this.favoriteItems = favoriteItems;
+        this.favMlContainer = favMlContainer;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_favorite, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.favitem, parent, false);
         return new ViewHolder(view);
     }
 
@@ -34,6 +40,9 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
         holder.favoriteTitle.setText(item.getTitle());
         holder.favoriteImage.setImageResource(item.getImageResId());
         holder.favoriteIcon.setImageResource(item.getIconResId());
+
+        // 将视图添加到 fav_ml_container
+        favMlContainer.addView(holder.itemView);
     }
 
     @Override
@@ -48,9 +57,9 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            favoriteImage = itemView.findViewById(R.id.favorite_image);
-            favoriteTitle = itemView.findViewById(R.id.favorite_title);
-            favoriteIcon = itemView.findViewById(R.id.favorite_icon);
+            favoriteImage = itemView.findViewById(R.id.fav_ml_img);
+            favoriteTitle = itemView.findViewById(R.id.fav_ml_text);
+            favoriteIcon = itemView.findViewById(R.id.fav_ml_imgbt);
         }
     }
 }

@@ -12,6 +12,7 @@
         android:id="@+id/toolbar2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/theme_corners_bg"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -20,6 +21,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
+            android:fontFamily="@font/jx"
+            android:textColor="@color/white"
+            android:textSize="24sp"
             android:text="@string/musicLibrary_title" />
 
         <SearchView
@@ -31,19 +35,18 @@
 
     </Toolbar>
 
+
     <GridView
         android:id="@+id/myGridView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginStart="24dp"
+        android:padding="10dp"
         android:layout_marginTop="58dp"
-        android:layout_marginEnd="24dp"
         android:horizontalSpacing="20dp"
         android:numColumns="2"
         android:verticalSpacing="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
 

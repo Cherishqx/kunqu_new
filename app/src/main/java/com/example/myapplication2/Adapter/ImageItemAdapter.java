@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication2.DetailActivity;
-import com.example.myapplication2.FavoritesManager;
+import com.example.myapplication2.ML_FavoritesManager;
 import com.example.myapplication2.ImageItem;
 import com.example.myapplication2.R;
 
@@ -25,7 +25,7 @@ public class ImageItemAdapter extends BaseAdapter {
     public ImageItemAdapter(Context context, List<ImageItem> items) {
         this.context = context;
         this.items = items;
-        FavoritesManager.initialize(context);
+        ML_FavoritesManager.initialize(context);
     }
 
     public void setOnFavoriteChangeListener(OnFavoriteChangeListener listener) {
@@ -60,21 +60,22 @@ public class ImageItemAdapter extends BaseAdapter {
         ImageItem item = items.get(position);
         imageView.setImageResource(item.getImageResId());
         titleTextView.setText(item.getTitle());
-        imageButtonFavorite.setSelected(FavoritesManager.isFavorite(item));
+        imageButtonFavorite.setSelected(ML_FavoritesManager.isFavorite(item));
 
         imageView.setOnClickListener(v -> {
             Intent intent = new Intent(context, DetailActivity.class);
             intent.putExtra("imageName", item.getImageName());
             context.startActivity(intent);
+
         });
 
         imageButtonFavorite.setOnClickListener(v -> {
-            boolean isFavorite = FavoritesManager.isFavorite(item);
+            boolean isFavorite = ML_FavoritesManager.isFavorite(item);
             if (isFavorite) {
-                FavoritesManager.removeFavorite(context, item);
+                ML_FavoritesManager.removeFavorite(context, item);
                 imageButtonFavorite.setSelected(false);
             } else {
-                FavoritesManager.addFavorite(context, item);
+                ML_FavoritesManager.addFavorite(context, item);
                 imageButtonFavorite.setSelected(true);
             }
             if (favoriteChangeListener != null) {
@@ -98,4 +99,6 @@ public class ImageItemAdapter extends BaseAdapter {
     public interface OnFavoriteChangeListener {
         void onFavoriteChanged();
     }
+
+
 }

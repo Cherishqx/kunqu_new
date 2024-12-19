@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_width="196dp"
+    android:layout_height="292dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="8dp"
+    android:layout_margin="8dp"
     android:background="@color/theme_green">
 
     <ImageView
         android:id="@+id/imageView_musicLibrary"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_width="180dp"
+        android:layout_height="240dp"
         android:scaleType="centerCrop"
         android:clipToOutline="true"
         android:background="@drawable/mine_rounded_corners"
@@ -40,17 +41,9 @@
         android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
-        android:src="@drawable/music_favorite"
+        android:src="@drawable/music_favorite_selector"
         app:layout_constraintTop_toBottomOf="@id/imageView_musicLibrary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/titleTextView"/>
 
-    <!--
-    <TextView
-        android:id="@+id/subTitleTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="2dp"
-        android:textSize="14sp"/>
-    -->
 </androidx.constraintlayout.widget.ConstraintLayout>

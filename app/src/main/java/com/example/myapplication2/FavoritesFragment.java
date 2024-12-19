@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -14,18 +16,31 @@ import java.util.ArrayList;
 
 public class FavoritesFragment extends Fragment {
 
-    private GridView gridView;
-    private ImageItemAdapter adapter;
+    private GridView gridViewFavMl;
+    private LinearLayout favCardContainer;
+    private ImageItemAdapter adapterFavMl;
+    private ImageItemAdapter adapterFavCard;
+    private TextView noFavoritesText1;
+    private TextView noFavoritesText2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_favorites, container, false);
 
-        gridView = view.findViewById(R.id.gridview_favorites);
-        adapter = new ImageItemAdapter(getContext(), new ArrayList<>(FavoritesManager.getFavoriteItems()));
-        gridView.setAdapter(adapter);
+        gridViewFavMl = view.findViewById(R.id.gridview_favml);
+        favCardContainer = view.findViewById(R.id.fav_card);
+        noFavoritesText1 = view.findViewById(R.id.no_favorites_text1);
+        noFavoritesText2 = view.findViewById(R.id.no_favorites_text2);
 
-        adapter.setOnFavoriteChangeListener(this::refreshFavorites);
+        adapterFavMl = new ImageItemAdapter(getContext(), new ArrayList<>(ML_FavoritesManager.getFavoriteItems()));
+        adapterFavCard = new ImageItemAdapter(getContext(), new ArrayList<>(ML_FavoritesManager.getFavoriteCards()));
+
+        gridViewFavMl.setAdapter(adapterFavMl);
+
+        adapterFavMl.setOnFavoriteChangeListener(this::refreshFavorites);
+        adapterFavCard.setOnFavoriteChangeListener(this::refreshFavorites);
+
+        refreshFavorites();
 
         return view;
     }
@@ -37,8 +52,35 @@ public class FavoritesFragment extends Fragment {
     }
 
     private void refreshFavorites() {
-        adapter.clear();
-        adapter.addAll(FavoritesManager.getFavoriteItems());
-        adapter.notifyDataSetChanged();
+        adapterFavMl.clear();
+        adapterFavMl.addAll(ML_FavoritesManager.getFavoriteItems());
+        adapterFavMl.notifyDataSetChanged();
+
+        adapterFavCard.clear();
+        adapterFavCard.addAll(ML_FavoritesManager.getFavoriteCards());
+        adapterFavCard.notifyDataSetChanged();
+
+        updateView(gridViewFavMl, noFavoritesText1, adapterFavMl);
+        updateFavCardContainer();
+    }
+
+    private void updateView(GridView gridView, TextView noFavoritesTextView, ImageItemAdapter adapter) {
+        if (adapter.getCount() == 0) {
+            gridView.setVisibility(View.GONE);
+            noFavoritesTextView.setVisibility(View.VISIBLE);
+        } else {
+            gridView.setVisibility(View.VISIBLE);
+            noFavoritesTextView.setVisibility(View.GONE);
+        }
+    }
+
+    private void updateFavCardContainer() {
+        if (adapterFavCard.getCount() == 0) {
+            favCardContainer.setVisibility(View.GONE);
+            noFavoritesText2.setVisibility(View.VISIBLE);
+        } else {
+            favCardContainer.setVisibility(View.VISIBLE);
+            noFavoritesText2.setVisibility(View.GONE);
+        }
     }
 }

@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class FavoritesManager {
+public class ML_FavoritesManager {
     private static final String PREFS_NAME = "favorites_prefs";
     private static final String FAVORITES_KEY = "favorites";
     private static Set<ImageItem> favoriteItems = new HashSet<>();
@@ -51,4 +51,12 @@ public class FavoritesManager {
         editor.putString(FAVORITES_KEY, json);
         editor.apply();
     }
+
+
+    // Method to get favorite cards
+    public static List<ImageItem> getFavoriteCards() {
+        // Return a list of favorite cards
+        return new ArrayList<>();
+    }
+
 }

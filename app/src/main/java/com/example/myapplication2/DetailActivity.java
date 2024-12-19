@@ -1,7 +1,8 @@
 package com.example.myapplication2;
 
-import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -21,12 +22,17 @@ import java.util.Map;
 
 public class DetailActivity extends AppCompatActivity {
 
+    private VideoView videoView;
+    private SeekBar seekBar;
+    private boolean isTracking = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        VideoView videoView = findViewById(R.id.video_view);
+        videoView = findViewById(R.id.video_view);
+        seekBar = findViewById(R.id.seek_bar);
         RecyclerView recyclerView = findViewById(R.id.recycler_view_details);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -53,6 +59,39 @@ public class DetailActivity extends AppCompatActivity {
                 tvDetail.setText(details.get("detail"));
             }
         }
+
+        videoView.setOnPreparedListener(mp -> {
+            seekBar.setMax(videoView.getDuration());
+            videoView.start();
+            updateSeekBar();
+        });
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (fromUser) {
+                    videoView.seekTo(progress);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                isTracking = true;
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                isTracking = false;
+                videoView.seekTo(seekBar.getProgress());
+            }
+        });
+    }
+
+    private void updateSeekBar() {
+        if (!isTracking) {
+            seekBar.setProgress(videoView.getCurrentPosition());
+        }
+        seekBar.postDelayed(this::updateSeekBar, 1000);
     }
 
     private void playVideoFromAssets(VideoView videoView, String fileName) {
