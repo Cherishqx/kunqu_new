@@ -77,11 +77,11 @@ public class Adapter_f2 extends BaseAdapter {
         for (int i = 0; i < imageResources.size(); i++) {
             ImageButton imageButton = new ImageButton(convertView.getContext());
             // dx-dp转换
-            int sizeInPx = (int) (120 * convertView.getContext().getResources().getDisplayMetrics().density);
+            int sizeInPx = (int) (80 * convertView.getContext().getResources().getDisplayMetrics().density);
             // 设置 ImageButton 的布局参数
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(sizeInPx, sizeInPx); // 设置为 140dp 转换后的像素值
             imageButton.setPadding(0, 0, 0, 0);  // 设置四个方向的 padding 为 0
-            params.setMargins(0, 20, 20, 20);  // 设置按钮之间的间距
+            params.setMargins(0, 20, 40, 20);  // 设置按钮之间的间距
             imageButton.setLayoutParams(params);
 
 //            // 设置背景颜色为透明  padding=0即可

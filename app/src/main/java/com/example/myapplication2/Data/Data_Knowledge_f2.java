@@ -45,20 +45,20 @@ public class Data_Knowledge_f2 {
             add(R.drawable.pic22);
         }}));
         itemList.add(new Data_Knowledge_f2("2", "声音行腔","指演员以特定的韵律、节奏和语调说出台词，来表达人物的内心感受和情绪变化", new ArrayList<Integer>() {{
-            add(R.drawable.pic3);
-            add(R.drawable.pic3);
-            add(R.drawable.pic3);
+            add(R.drawable.pic31);
+            add(R.drawable.pic32);
+            add(R.drawable.pic33png);
         }}));
         itemList.add(new Data_Knowledge_f2("3", "角色行当","昆剧行腔优美，以缠绵婉转、柔漫悠远见长。在演唱技巧上注重声音的控制，节奏速度的顿挫疾徐和咬字吐音的讲究，场面伴奏乐曲齐全。", new ArrayList<Integer>() {{
-            add(R.drawable.pic3);
-            add(R.drawable.pic3);
-            add(R.drawable.pic3);
-            add(R.drawable.pic3);
-            add(R.drawable.pic3);
+            add(R.drawable.pic41);
+            add(R.drawable.pic42);
+            add(R.drawable.pic43);
+            add(R.drawable.pic44);
+            add(R.drawable.pic45);
         }}));
         itemList.add(new Data_Knowledge_f2("4", "度曲八法","语出清·王德晖、徐沅澄《顾误录》，指唱曲的八点要领。", new ArrayList<Integer>() {{
-            add(R.drawable.pic3);
-            add(R.drawable.pic3);
+            add(R.drawable.pic51);
+            add(R.drawable.pic52);
         }}));
         itemList.add(new Data_Knowledge_f2("5", "学曲六戒","", new ArrayList<Integer>() {{
             add(R.drawable.pic3);

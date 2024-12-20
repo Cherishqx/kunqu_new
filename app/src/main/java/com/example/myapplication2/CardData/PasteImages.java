@@ -12,13 +12,26 @@ public class PasteImages {
 
     public PasteImages() {
         listItem = new ArrayList<>();
-        for (int i = 0; i < n; ++i) {
-            Map<String, Object> map = new HashMap<>();
-            map.put("image", R.drawable.mine2);
-            map.put("isSelected", false);
-            listItem.add(map);
+        // Adding the first two images manually
+        listItem.add(createImageMap(R.drawable.ip0, false));
+        listItem.add(createImageMap(R.drawable.ip1, false));
+        listItem.add(createImageMap(R.drawable.ip2, false));
+        listItem.add(createImageMap(R.drawable.ip3, false));
+        listItem.add(createImageMap(R.drawable.ip4, false));
+
+        // Adding the other images in the loop
+        for (int i = 0; i < n-5; ++i) {
+            listItem.add(createImageMap(R.drawable.mine2, false));
         }
     }
+
+    private Map<String, Object> createImageMap(int imageResId, boolean isSelected) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("image", imageResId);
+        map.put("isSelected", isSelected);
+        return map;
+    }
+
 
     public ArrayList<Map<String, Object>> getListItem() {
         return listItem;
