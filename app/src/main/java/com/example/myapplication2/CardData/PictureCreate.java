@@ -187,7 +187,7 @@ public class PictureCreate {
         return bitmap;
     }
 
-    public void saveBitmapToFile(Bitmap bitmap) {
+    public String saveBitmapToFile(Bitmap bitmap) {
         // 获取存储路径
         String directoryPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
         File file = new File(directoryPath, "output_image_with_font.png");
@@ -197,18 +197,20 @@ public class PictureCreate {
             outputStream = new FileOutputStream(file);
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream); // 保存为PNG格式
             outputStream.flush();
-            Log.e("File " , file.getAbsolutePath());
+            Log.e("File ", file.getAbsolutePath());
 
             MediaScannerConnection.scanFile(context, new String[]{file.getAbsolutePath()}, null, new MediaScannerConnection.OnScanCompletedListener() {
                 @Override
                 public void onScanCompleted(String path, Uri uri) {
                     Log.e("MediaScanner", "Scanned " + path + ":");
                     Log.e("MediaScanner", "-> uri=" + uri);
-                    Toast.makeText(context,"已保存到现场", Toast.LENGTH_LONG);
+                    Toast.makeText(context, "已保存到相册", Toast.LENGTH_LONG).show(); // 注意这里需要调用show()来显示Toast
                 }
             });
+            return file.getAbsolutePath(); // 返回文件路径
         } catch (IOException e) {
             e.printStackTrace();
+            return null; // 发生异常，返回null
         } finally {
             if (outputStream != null) {
                 try {

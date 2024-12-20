@@ -75,7 +75,6 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
         shareButton = findViewById(R.id.share_button);
         toMeButton = findViewById(R.id.tome_button);
 
-
     }
 
     public void initView(){
@@ -168,9 +167,9 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
             shareButton.setEnabled(false);
             downloadButton.setEnabled(false);
         }
-        if (view.getId() == R.id.download_button){
-            pictureCreate.saveBitmapToFile(bitmap);
-            Toast.makeText(this,"已保存到相册", Toast.LENGTH_LONG).show();
+        if (view.getId() == R.id.download_button) {
+            String imagePath = pictureCreate.saveBitmapToFile(bitmap);
+            Toast.makeText(this, "已保存到相册", Toast.LENGTH_LONG).show();
         }
     }
 }
