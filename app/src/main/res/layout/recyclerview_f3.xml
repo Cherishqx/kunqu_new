@@ -29,47 +29,49 @@
         app:layout_constraintStart_toStartOf="parent"
         android:paddingBottom="15dp"
         app:layout_constraintTop_toBottomOf="@id/sentence">
-        <ImageButton
-            android:id="@+id/button3_2"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:src="@drawable/share"
-            android:scaleType="centerInside"
-            android:background="@android:color/transparent"/>
-
-        <ImageButton
-            android:id="@+id/button3_3"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:src="@drawable/heart"
-            android:scaleType="centerInside"
-            android:background="@android:color/transparent"/>
 
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3"/> <!-- 占位符，用于分隔左右按钮 -->
+            android:layout_weight="1"/> <!-- 占位符，用于分隔左右按钮 -->
 
-        <ImageButton
+
+        <Button
             android:id="@+id/button3_4"
-            android:layout_width="0dp"
+            android:layout_width="100dp"
             android:layout_height="40dp"
+            android:paddingLeft="5dp"
+            android:paddingTop="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="5dp"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:scaleType="centerInside"
-            android:src="@drawable/copy"/>
-
-        <ImageButton
-            android:id="@+id/button3_5"
+            android:text="删除"
+            android:drawableLeft="@drawable/delete"
+            android:textSize="16sp"
+            android:gravity="center" />
+        <View
             android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/> <!-- 占位符 -->
+        <Button
+            android:id="@+id/button3_5"
+            android:layout_width="100dp"
             android:layout_height="40dp"
+            android:paddingLeft="5dp"
+            android:paddingTop="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="5dp"
             android:layout_weight="1"
-            android:src="@drawable/add"
-            android:scaleType="centerInside"
-            android:background="@android:color/transparent"/>
-
+            android:background="@android:color/transparent"
+            android:text="制作书签"
+            android:drawableLeft="@drawable/add"
+            android:textSize="16sp"
+            android:gravity="center" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/> <!-- 占位符，用于分隔左右按钮 -->
     </LinearLayout>
 
 

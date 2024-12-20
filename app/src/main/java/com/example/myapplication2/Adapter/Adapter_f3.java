@@ -1,5 +1,5 @@
+//旧版本 已弃用 后续删掉
 package com.example.myapplication2.Adapter;
-
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,7 +58,7 @@ public class Adapter_f3 extends RecyclerView.Adapter<Adapter_f3.ViewHolder> {
         public ViewHolder(View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.sentence);
-            plus = itemView.findViewById(R.id.button3_5);
+//            plus = itemView.findViewById(R.id.button3_5);
         }
     }
 

@@ -98,17 +98,17 @@ public class FirstFragment_origin extends Fragment {
             imageView.setImageResource(item.getImageResId());
 
             // Set layout parameters to match the static ImageView
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                    (int) getResources().getDimension(R.dimen.image_width), // width in dp
-                    (int) getResources().getDimension(R.dimen.image_height) // height in dp
-            );
-            layoutParams.setMargins(
-                    (int) getResources().getDimension(R.dimen.image_margin_left),
-                    0,
-                    0,
-                    0
-            );
-            imageView.setLayoutParams(layoutParams);
+//            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+//                    (int) getResources().getDimension(R.dimen.image_width), // width in dp
+//                    (int) getResources().getDimension(R.dimen.image_height) // height in dp
+//            );
+//            layoutParams.setMargins(
+//                    (int) getResources().getDimension(R.dimen.image_margin_right),
+//                    0,
+//                    0,
+//                    0
+//            );
+//            imageView.setLayoutParams(layoutParams);
             imageView.setClipToOutline(true);
             imageView.setBackgroundResource(R.drawable.mine_rounded_corners);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP); // Ensure the image fills the ImageView

@@ -2,5 +2,5 @@
 <resources>
     <dimen name="image_width">140dp</dimen>
     <dimen name="image_height">210dp</dimen>
-    <dimen name="image_margin_left">16dp</dimen>
+    <dimen name="image_margin_">16dp</dimen>
 </resources>
