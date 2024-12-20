@@ -41,7 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             int count = cursor.getInt(0);
             if (count == 0) {
                 // 如果表中没有数据，则插入内置数据
-                MyDatabase.execSQL("insert into sentences (Id, content) values (1, '情不知所起， 一往而深，\n" +
+                MyDatabase.execSQL("insert into sentences (Id, content) values (1, '情不知所起，一往而深，\n" +
                         "生者可以死，死可以生。 \n" +
                         "        ——《牡丹亭》')");
                 MyDatabase.execSQL("insert into sentences (Id, content) values (2, '此生终老温柔，白云不羡仙乡，\n惟愿取恩情美满，地久天长。\n    ————《长生殿》')");
