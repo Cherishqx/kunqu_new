@@ -1,5 +1,9 @@
 package com.example.myapplication2;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,10 +13,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.example.myapplication2.Adapter.ImageItemAdapter;
+import com.example.myapplication2.Adapter.Adapter_Favcard;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 public class FavoritesFragment extends Fragment {
 
@@ -22,10 +30,14 @@ public class FavoritesFragment extends Fragment {
     private ImageItemAdapter adapterFavCard;
     private TextView noFavoritesText1;
     private TextView noFavoritesText2;
+    private Adapter_Favcard favoriteButtonAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_favorites, container, false);
+
+        // Initialize the Card_FavoritesManager
+        Card_FavoritesManager.initialize(requireContext());
 
         gridViewFavMl = view.findViewById(R.id.gridview_favml);
         favCardContainer = view.findViewById(R.id.fav_card);
@@ -40,9 +52,19 @@ public class FavoritesFragment extends Fragment {
         adapterFavMl.setOnFavoriteChangeListener(this::refreshFavorites);
         adapterFavCard.setOnFavoriteChangeListener(this::refreshFavorites);
 
+        // Register the broadcast receiver
+        LocalBroadcastManager.getInstance(requireContext()).registerReceiver(updateFavoritesReceiver, new IntentFilter("update_favorites"));
+
         refreshFavorites();
 
         return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        // Unregister the broadcast receiver
+        LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(updateFavoritesReceiver);
     }
 
     @Override
@@ -62,6 +84,21 @@ public class FavoritesFragment extends Fragment {
 
         updateView(gridViewFavMl, noFavoritesText1, adapterFavMl);
         updateFavCardContainer();
+
+        // Load favorite buttons
+        Set<String> favorites = Card_FavoritesManager.getFavoriteCards();
+        List<String> favoriteTypes = new ArrayList<>(favorites);
+        List<String> favoriteTitles = new ArrayList<>();
+        for (String type : favorites) {
+            favoriteTitles.add(Card_FavoritesManager.getTitle(type));
+        }
+
+        favoriteButtonAdapter = new Adapter_Favcard(requireContext(), favoriteTypes, favoriteTitles);
+        favCardContainer.removeAllViews();
+        for (int i = 0; i < favoriteButtonAdapter.getCount(); i++) {
+            View buttonView = favoriteButtonAdapter.getView(i, null, favCardContainer);
+            favCardContainer.addView(buttonView);
+        }
     }
 
     private void updateView(GridView gridView, TextView noFavoritesTextView, ImageItemAdapter adapter) {
@@ -75,7 +112,7 @@ public class FavoritesFragment extends Fragment {
     }
 
     private void updateFavCardContainer() {
-        if (adapterFavCard.getCount() == 0) {
+        if (favCardContainer.getChildCount() == 0) {
             favCardContainer.setVisibility(View.GONE);
             noFavoritesText2.setVisibility(View.VISIBLE);
         } else {
@@ -83,4 +120,11 @@ public class FavoritesFragment extends Fragment {
             noFavoritesText2.setVisibility(View.GONE);
         }
     }
+
+    private final BroadcastReceiver updateFavoritesReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            refreshFavorites();
+        }
+    };
 }

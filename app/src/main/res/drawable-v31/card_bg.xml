@@ -1,0 +1,9 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <bitmap
+            android:src="@drawable/pic3"
+            android:background="@drawable/card_bg_form"
+            android:clipToOutline="true"
+            android:tileMode="disabled"/>
+    </item>
+</layer-list>
