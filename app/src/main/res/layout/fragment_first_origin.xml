@@ -23,7 +23,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_width="match_parent"
                 android:layout_height="170dp"
-                android:background="@color/theme_green"/>
+                android:background="@drawable/jianbian"/>
 
             <com.youth.banner.Banner
                 android:id="@+id/banner"
@@ -92,6 +92,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:scrollbars="none"
                 android:layout_marginHorizontal="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -115,7 +116,7 @@
                         android:id="@+id/recommend_2"
                         android:layout_width="140dp"
                         android:layout_height="210dp"
-                        android:layout_marginLeft="16dp"
+                        android:layout_marginLeft="10dp"
                         android:background="@drawable/mine_rounded_corners"
                         android:clipToOutline="true"
                         android:src="@mipmap/recommend_2" />
@@ -124,7 +125,7 @@
                         android:id="@+id/recommend_3"
                         android:layout_width="140dp"
                         android:layout_height="210dp"
-                        android:layout_marginLeft="16dp"
+                        android:layout_marginLeft="10dp"
                         android:src="@mipmap/recommend_3"
                         android:clipToOutline="true"
                         android:background="@drawable/mine_rounded_corners" />
@@ -133,7 +134,7 @@
                         android:id="@+id/recommend_4"
                         android:layout_width="140dp"
                         android:layout_height="210dp"
-                        android:layout_marginLeft="16dp"
+                        android:layout_marginLeft="10dp"
                         android:src="@mipmap/recommend_4"
                         android:clipToOutline="true"
                         android:background="@drawable/mine_rounded_corners" />
@@ -142,7 +143,7 @@
                         android:id="@+id/recommend_5"
                         android:layout_width="140dp"
                         android:layout_height="210dp"
-                        android:layout_marginLeft="16dp"
+                        android:layout_marginLeft="10dp"
                         android:src="@mipmap/recommend_5"
                         android:clipToOutline="true"
                         android:background="@drawable/mine_rounded_corners" />
@@ -155,6 +156,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:scrollbars="none"
                 android:layout_marginHorizontal="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
