@@ -16,7 +16,7 @@ public class FirstFragment extends Fragment implements View.OnClickListener{
     TextView p1s1;
     TextView p1s2;
     private FirstFragment_origin firstFragment_origin;
-    private ViewPage2Fragment firstFragment_next;
+    private FirstFragment_now_past firstFragment_now_past;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,11 +49,11 @@ public class FirstFragment extends Fragment implements View.OnClickListener{
                 fragmentTransaction.show(firstFragment_origin);
             }
         } else {
-            if (firstFragment_next == null) {
-                firstFragment_next = new ViewPage2Fragment();
-                fragmentTransaction.add(R.id.container, firstFragment_next);
+            if (firstFragment_now_past == null) {
+                firstFragment_now_past = new FirstFragment_now_past();
+                fragmentTransaction.add(R.id.container, firstFragment_now_past);
             } else {
-                fragmentTransaction.show(firstFragment_next);
+                fragmentTransaction.show(firstFragment_now_past);
                 //mMeFragment.refreshData();
             }
         }
@@ -64,8 +64,8 @@ public class FirstFragment extends Fragment implements View.OnClickListener{
         if(firstFragment_origin != null){
             fragmentTransaction.hide(firstFragment_origin);
         }
-        if(firstFragment_next !=null){
-            fragmentTransaction.hide(firstFragment_next);
+        if(firstFragment_now_past !=null){
+            fragmentTransaction.hide(firstFragment_now_past);
         }
     }
 

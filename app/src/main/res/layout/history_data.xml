@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="320dp"
+        android:layout_height="0dp"
+        android:padding="5dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/rounded_background"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/background2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <ImageView
+        android:id="@+id/background1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="50dp"
+        android:paddingTop="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/border"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+ />
+    <ImageView
+        android:id="@+id/background2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="50dp"
+        android:paddingBottom="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/border1"
+        app:layout_constraintBottom_toTopOf="@id/margin1"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="16dp" />
+    <!-- 竖线 -->
+    <View
+        android:id="@+id/vertical_line"
+        android:layout_width="6dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/line"
+        app:layout_constraintTop_toTopOf="@id/margin"
+        app:layout_constraintBottom_toBottomOf="@+id/margin1"
+        app:layout_constraintEnd_toEndOf="parent"  />
+
+
+    <!-- 圆点 -->
+    <View
+        android:id="@+id/dot"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@id/vertical_line"
+        android:background="@drawable/timelline_dot_normal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/vertical_line"
+        app:layout_constraintEnd_toEndOf="@id/vertical_line" />
+
+    <View
+        android:id="@+id/margin"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/title"
+        app:layout_constraintStart_toEndOf="@id/vertical_line"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <!-- 文字 -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="南宋光宗时期"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/margin"
+        app:layout_constraintBottom_toTopOf="@+id/intro"
+        app:layout_constraintStart_toStartOf="@id/background1"
+        app:layout_constraintEnd_toEndOf="@id/background2"/>
+    <TextView
+        android:id="@+id/intro"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="浙江永嘉南戏崛起，以南方民间音乐为演唱曲调，演出自由活泼，但存在缺陷，长期处于较低层次。南戏在发展中不断吸收传统音乐形式，逐渐丰富。"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toTopOf="@id/margin1"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintStart_toStartOf="@id/background1"
+        app:layout_constraintEnd_toEndOf="@id/background2"/>
+    <View
+        android:id="@+id/margin1"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/vertical_line"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

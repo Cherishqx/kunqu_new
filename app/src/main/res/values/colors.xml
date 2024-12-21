@@ -10,4 +10,7 @@
 
     <color name="theme_green">#61BAA7</color>
     <color name="panel_color">#E57C7C7C</color>
+    <color name="backgroud_f1">#F9D7A3</color>
+    <color name="point">#E06352</color>
+    <color name="line">#776E6F</color>
 </resources>
