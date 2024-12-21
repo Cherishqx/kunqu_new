@@ -7,7 +7,12 @@
     android:layout_height="match_parent"
     android:background="@color/lightgray"
     tools:context=".CreateActivity">
-
+    <ImageView
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:src="@drawable/back_create"/>
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
@@ -104,7 +109,9 @@
                 android:id="@+id/close_button"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_margin="10dp"
+                android:layout_marginVertical="20dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/baseline_close_24"
                 android:layout_gravity="center"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -125,22 +132,28 @@
             android:gravity="center">
             <Button
                 android:id="@+id/share_button"
-                android:layout_width="60dp"
+                android:layout_width="70dp"
                 android:layout_marginHorizontal="30dp"
                 android:layout_height="60dp"
-                android:text="@string/share"/>
+                android:text="@string/share"
+                android:textColor="@color/white"
+                android:background="@color/theme_green"/>
             <Button
                 android:id="@+id/download_button"
-                android:layout_width="60dp"
+                android:layout_width="70dp"
                 android:layout_marginHorizontal="30dp"
                 android:layout_height="60dp"
-                android:text="@string/download"/>
+                android:text="@string/download"
+                android:textColor="@color/white"
+                android:background="@color/theme_green"/>
             <Button
                 android:id="@+id/tome_button"
-                android:layout_width="60dp"
+                android:layout_width="70dp"
                 android:layout_marginHorizontal="30dp"
                 android:layout_height="60dp"
-                android:text="@string/toMe"/>
+                android:text="@string/toMe"
+                android:textColor="@color/white"
+                android:background="@color/theme_green"/>
         </LinearLayout>
 
     </RelativeLayout>

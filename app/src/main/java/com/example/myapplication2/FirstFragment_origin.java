@@ -69,7 +69,7 @@ public class FirstFragment_origin extends Fragment {
         // 获取5个随机知识卡片
         List<Data_Knowledge_f2> knowledgeItems = Data_Knowledge_f2.generateData();
         Collections.shuffle(knowledgeItems); // 随机打乱列表
-        setKnowledgeItems(knowledgeItems.subList(0, 5), view); // 只取前5个
+        setKnowledgeItems(knowledgeItems.subList(0, 4), view); // 只取前5个
 
         TextView tv = view.findViewById(R.id.tv_music_library);
         tv.setOnClickListener(new View.OnClickListener() {
@@ -125,7 +125,7 @@ public class FirstFragment_origin extends Fragment {
         Collections.shuffle(knowledgeItems);
 
         // 只取前5个知识卡片
-        List<Data_Knowledge_f2> randomKnowledgeItems = knowledgeItems.subList(0, 5);
+        List<Data_Knowledge_f2> randomKnowledgeItems = knowledgeItems.subList(0, 4);
 
         for (int i = 0; i < randomKnowledgeItems.size(); i++) {
             Data_Knowledge_f2 item = randomKnowledgeItems.get(i);

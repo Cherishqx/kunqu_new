@@ -60,13 +60,13 @@ public class Data_Knowledge_f2 {
             add(R.drawable.pic51);
             add(R.drawable.pic52);
         }}));
-        itemList.add(new Data_Knowledge_f2("5", "学曲六戒","", new ArrayList<Integer>() {{
-            add(R.drawable.pic3);
-            add(R.drawable.pic3);
-            add(R.drawable.pic3);
-            add(R.drawable.pic3);
-            add(R.drawable.pic3);
-        }}));
+//        itemList.add(new Data_Knowledge_f2("5", "学曲六戒","", new ArrayList<Integer>() {{
+//            add(R.drawable.pic3);
+//            add(R.drawable.pic3);
+//            add(R.drawable.pic3);
+//            add(R.drawable.pic3);
+//            add(R.drawable.pic3);
+//        }}));
 
         // 添加更多的数据项
 
