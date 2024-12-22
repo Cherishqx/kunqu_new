@@ -46,7 +46,8 @@
             android:searchIcon="@drawable/baseline_search_24"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
-            android:layout_gravity="end"/> />
+            android:layout_gravity="end"/>
+
     </Toolbar>
 
     <FrameLayout

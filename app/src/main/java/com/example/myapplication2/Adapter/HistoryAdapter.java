@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication2.Data.History;
 import com.example.myapplication2.R;
 
 import java.util.List;

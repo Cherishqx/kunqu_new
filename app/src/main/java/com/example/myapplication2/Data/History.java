@@ -1,4 +1,4 @@
-package com.example.myapplication2.Adapter;
+package com.example.myapplication2.Data;
 
 public class History {
     private String title;

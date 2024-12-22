@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.myapplication2.Data.TicketInformation;
 import com.example.myapplication2.R;
 
 import java.util.List;
@@ -73,7 +74,7 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
             timeText = itemView.findViewById(R.id.time);
             placeText = itemView.findViewById(R.id.place);
             fareText = itemView.findViewById(R.id.fare);
-            imageView = itemView.findViewById(R.id.img); // 假设你的布局文件中有一个 ImageView 用于显示图片
+            imageView = itemView.findViewById(R.id.img);
         }
     }
 }

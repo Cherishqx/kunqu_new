@@ -1,17 +1,15 @@
 package com.example.myapplication2;
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import com.example.myapplication2.Adapter.History;
-import com.example.myapplication2.Adapter.TicketInformation;
+import com.example.myapplication2.Data.History;
+import com.example.myapplication2.Data.TicketInformation;
 import com.example.myapplication2.Data.Sentence;
 
 import java.util.ArrayList;
@@ -22,11 +20,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME = "sentences";
     public static final String COLUMN_ID = "Id";//建立常量，方便
     public static final String COLUMN_CONTENT = "content";
-    public static final String COLUMN_TITLE = "title";//建立常量，方便
+    public static final String COLUMN_TITLE = "title";
     public static final String COLUMN_INTRO= "intro";
-    public static final String COLUMN_PERID = "perID";//建立常量，方便
+    public static final String COLUMN_PERID = "perID";
     public static final String COLUMN_NAME= "name";
-    public static final String COLUMN_TIME= "time";//建立常量，方便
+    public static final String COLUMN_TIME= "time";
     public static final String COLUMN_PLACE= "place";
     public static final String COLUMN_FARE= "fare";
     public static final String COLUMN_picNAME= "picName";
@@ -176,7 +174,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if(insert==-1){
             return "fail";
         }
-        MyDatabase.close();//"getWritableDatabase"打开了，此处是用完关闭
+        MyDatabase.close();//"getWritableDatabase"打开了，此处用完关闭
         return"succese";
     }
 
@@ -187,7 +185,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return "fail";
         }
 
-        MyDatabase.close();//"getWritableDatabase"打开了，此处是用完关闭
+        MyDatabase.close();//"getWritableDatabase"打开了，此处用完关闭
         return"succese";
     }
 
@@ -200,7 +198,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if(update==0){
             return "fali";
         }
-        MyDatabase.close();//"getWritableDatabase"打开了，此处是用完关闭
+        MyDatabase.close();//"getWritableDatabase"打开了，此处用完关闭
         return"succese";
     }
 

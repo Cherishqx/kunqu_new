@@ -56,7 +56,7 @@ public class ThirdFragment extends Fragment {
 
                 // 创建对话框
                 AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-                dialog.setTitle("输入内容");
+                dialog.setTitle("新增收藏");
                 dialog.setView(input);  // 设置输入框
                 dialog.setPositiveButton("添加", new DialogInterface.OnClickListener() {
                     @Override

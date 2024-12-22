@@ -11,10 +11,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapplication2.Adapter.History;
+import com.example.myapplication2.Data.History;
 import com.example.myapplication2.Adapter.HistoryAdapter;
 import com.example.myapplication2.Adapter.InformationAdapter;
-import com.example.myapplication2.Adapter.TicketInformation;
+import com.example.myapplication2.Data.TicketInformation;
 
 import java.util.List;
 
@@ -48,7 +48,7 @@ public class FirstFragment_now_past extends Fragment {
         List<History> topData = getTopData();
         List<TicketInformation> bottomData = getBottomData();
 
-        // 创建两个适配器，分别用于不同的数据
+        // 创建适配器
         topAdapter = new HistoryAdapter(getContext(), topData);
         bottomAdapter = new InformationAdapter(getContext(), bottomData);
 
@@ -63,7 +63,7 @@ public class FirstFragment_now_past extends Fragment {
                 // 获取ImageView在NestedScrollView中的位置
                 int[] location = new int[2];
                 imageView.getLocationInWindow(location);
-                int y = location[1]-240;
+                int y = location[1]-270;
                 // 使用smoothScrollTo平滑滚动到ImageView的位置
                 nestedScrollView.smoothScrollTo(0, y);
             }
