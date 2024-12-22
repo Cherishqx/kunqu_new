@@ -1,6 +1,8 @@
 package com.example.myapplication2.CardData;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -13,6 +15,8 @@ import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.core.content.FileProvider;
 import androidx.core.content.res.ResourcesCompat;
 import java.util.Calendar;
 import com.example.myapplication2.R;
@@ -190,7 +194,9 @@ public class PictureCreate {
     public String saveBitmapToFile(Bitmap bitmap) {
         // 获取存储路径
         String directoryPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
-        File file = new File(directoryPath, "output_image_with_font.png");
+        // 动态生成文件名
+        String fileName = "output_image_with_font_" + System.currentTimeMillis() + ".png";
+        File file = new File(directoryPath, fileName);
 
         FileOutputStream outputStream = null;
         try {
@@ -221,4 +227,56 @@ public class PictureCreate {
             }
         }
     }
+
+    public void shareBitmapToWeChat(Bitmap bitmap) {
+        try {
+            // 创建缓存目录中的临时文件
+            File cacheDir = new File(context.getCacheDir(), "images");
+            if (!cacheDir.exists()) {
+                cacheDir.mkdirs();
+            }
+            File tempFile = new File(cacheDir, "temp_image.png");
+
+            Log.e("111","12e12e12");
+
+            // 将 Bitmap 写入临时文件
+            FileOutputStream outputStream = new FileOutputStream(tempFile);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+            outputStream.flush();
+            outputStream.close();
+            Log.e("111","1212");
+            // 获取文件的 Uri
+            Uri uri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", tempFile);
+
+            // 检查微信是否安装
+            boolean isWeChatInstalled = false;
+            PackageManager pm = context.getPackageManager();
+            try {
+                pm.getPackageInfo("com.tencent.mm", PackageManager.GET_ACTIVITIES);
+                isWeChatInstalled = true;
+            } catch (PackageManager.NameNotFoundException e) {
+                isWeChatInstalled = false;
+            }
+            Log.e("111","111");
+            if (!isWeChatInstalled) {
+                Toast.makeText(context, "未安装微信", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            Log.e("111","11232");
+            // 创建分享 Intent
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("image/*");
+            shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            shareIntent.setPackage("com.tencent.mm"); // 设置目标应用为微信
+
+            // 启动分享
+            context.startActivity(Intent.createChooser(shareIntent, "分享到微信"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(context, "分享失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 }

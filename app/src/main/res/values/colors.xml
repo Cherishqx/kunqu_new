@@ -7,6 +7,7 @@
     <color name="lightgray">#F4F5F7</color> <!-- 亮灰色 -->
     <color name="slategray">#708090</color> <!-- 灰石色 -->
     <color name="search_bg">#E7E8E7</color>
+    <color name="gray_text">#454545</color>
 
     <color name="theme_green">#61BAA7</color>
     <color name="panel_color">#E57C7C7C</color>

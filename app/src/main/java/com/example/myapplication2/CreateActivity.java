@@ -125,6 +125,7 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
         closeButton.setOnClickListener(this);
         //toMeButton.setOnClickListener(this);
         downloadButton.setOnClickListener(this);
+        shareButton.setOnClickListener(this);
         List<String> inputTexts = sentenceAdapter.getInputTexts();
 //        for (String input : inputTexts) {
 //            Log.d("InputText", input);
@@ -171,5 +172,10 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
             String imagePath = pictureCreate.saveBitmapToFile(bitmap);
             Toast.makeText(this, "已保存到相册", Toast.LENGTH_LONG).show();
         }
+        if(view.getId() == R.id.share_button){
+            pictureCreate.shareBitmapToWeChat(bitmap);
+        }
+
+
     }
 }

@@ -110,12 +110,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             int count = cursor1.getInt(0);
             if (count == 0) {
                 // 如果表中没有数据，则插入内置数据
-                MyDatabase.execSQL("insert into ticketinformation (perID, name, time, place, fare, picName) values (1, '曲目：《西厢记》', '时间：12月6日 周五 19:30', '地点：北京・天桥艺术中心・中剧场', '票价：¥80起', 'ticket1')");
-                MyDatabase.execSQL("insert into ticketinformation (perID, name, time, place, fare, picName) values (2, '曲目：《牡丹亭》', '时间：12月13日-15日', '地点：上海・上海大剧院・别克中剧场', '票价：¥80起', 'ticket2')");
-                MyDatabase.execSQL("insert into ticketinformation (perID, name, time, place, fare, picName) values (3, '曲目：《牡丹亭》', '时间：12月22日 周日 19:30', '地点：北京・天桥艺术中心・中剧场', '票价：¥80起', 'ticket3')");
-                MyDatabase.execSQL("insert into ticketinformation (perID, name, time, place, fare, picName) values (4, '曲目：现代昆曲《李佩先生》', '时间：12月25日-27日 19:30', '地点：北京・长安大戏院', '票价：¥50起', 'ticket4')");
-                MyDatabase.execSQL("insert into ticketinformation (perID, name, time, place, fare, picName) values (5, '曲目：《牡丹亭》全本・精华版 甲辰年封箱演出', '时间：1月1日 周二 19:30', '地点：昆明・昆明剧院・大剧场', '票价：¥120起', 'ticket8')");
-                MyDatabase.execSQL("insert into ticketinformation (perID, name, time, place, fare, picName) values (6, '曲目：戏曲展演《游园惊梦》', '时间：02月15日-16日', '地点：北京・国家大剧院・戏剧场', '票价：¥80起', 'ticket9')");
+                MyDatabase.execSQL("insert into ticketinformation (perID, name, time, place, fare, picName) values (1, '《西厢记》', '12月6日 周五 19:30', '北京・天桥艺术中心・中剧场', '¥80起', 'ticket1')");
+                MyDatabase.execSQL("insert into ticketinformation (perID, name, time, place, fare, picName) values (2, '《牡丹亭》', '12月13日-15日', '上海・上海大剧院・别克中剧场', '¥80起', 'ticket2')");
+                MyDatabase.execSQL("insert into ticketinformation (perID, name, time, place, fare, picName) values (3, '《牡丹亭》', '12月22日 周日 19:30', '北京・天桥艺术中心・中剧场', '¥80起', 'ticket3')");
+                MyDatabase.execSQL("insert into ticketinformation (perID, name, time, place, fare, picName) values (4, '现代昆曲《李佩先生》', '12月25日-27日 19:30', '北京・长安大戏院', '¥50起', 'ticket4')");
+                MyDatabase.execSQL("insert into ticketinformation (perID, name, time, place, fare, picName) values (5, '《牡丹亭》全本・精华版 甲辰年封箱演出', '1月1日 周二 19:30', '昆明・昆明剧院・大剧场', '¥120起', 'ticket8')");
+                MyDatabase.execSQL("insert into ticketinformation (perID, name, time, place, fare, picName) values (6, '戏曲展演《游园惊梦》', '02月15日-16日', '北京・国家大剧院・戏剧场', '¥80起', 'ticket9')");
 
             }
             cursor1.close();

@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class PasteImages {
     private ArrayList<Map<String, Object>> listItem;
-    private int n = 20;
+//    private int n = 20;
 
     public PasteImages() {
         listItem = new ArrayList<>();
@@ -19,10 +19,10 @@ public class PasteImages {
         listItem.add(createImageMap(R.drawable.ip3, false));
         listItem.add(createImageMap(R.drawable.ip4, false));
 
-        // Adding the other images in the loop
-        for (int i = 0; i < n-5; ++i) {
-            listItem.add(createImageMap(R.drawable.mine2, false));
-        }
+//        // Adding the other images in the loop
+//        for (int i = 0; i < n-5; ++i) {
+//            listItem.add(createImageMap(R.drawable.mine2, false));
+//        }
     }
 
     private Map<String, Object> createImageMap(int imageResId, boolean isSelected) {
