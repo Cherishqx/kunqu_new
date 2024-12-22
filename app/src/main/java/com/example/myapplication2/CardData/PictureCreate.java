@@ -247,22 +247,7 @@ public class PictureCreate {
             Log.e("111","1212");
             // 获取文件的 Uri
             Uri uri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", tempFile);
-
-            // 检查微信是否安装
-            boolean isWeChatInstalled = false;
-            PackageManager pm = context.getPackageManager();
-            try {
-                pm.getPackageInfo("com.tencent.mm", PackageManager.GET_ACTIVITIES);
-                isWeChatInstalled = true;
-            } catch (PackageManager.NameNotFoundException e) {
-                isWeChatInstalled = false;
-            }
-            Log.e("111","111");
-            if (!isWeChatInstalled) {
-                Toast.makeText(context, "未安装微信", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            Log.e("111","11232");
+            Log.d("Generated Uri", uri.toString());
             // 创建分享 Intent
             Intent shareIntent = new Intent(Intent.ACTION_SEND);
             shareIntent.setType("image/*");
