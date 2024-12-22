@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import android.Manifest;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class HistoryFragment extends Fragment {
@@ -81,7 +82,7 @@ public class HistoryFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         // 添加按钮以选择图片
-        ImageButton selectImageButton = view.findViewById(R.id.select_image_button);
+        ImageView selectImageButton = view.findViewById(R.id.select_image_button);
         selectImageButton.setOnClickListener(v -> requestStoragePermission());
 
         return view;

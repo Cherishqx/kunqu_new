@@ -1,15 +1,17 @@
 package com.example.myapplication2.Adapter;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.app.AlertDialog;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication2.Data.ShowDIY;
@@ -61,6 +63,21 @@ public class ShowDIYAdapter extends RecyclerView.Adapter<ShowDIYAdapter.ViewHold
             @Override
             public void afterTextChanged(Editable s) {}
         });
+
+        // 设置删除按钮的点击事件
+        holder.deleteButton.setOnClickListener(v -> {
+            // 显示删除确认对话框
+            new AlertDialog.Builder(mRecyclerView.getContext())
+                    .setTitle("确认删除?")
+                    .setMessage("您确定要删除此条内容吗?")
+                    .setNegativeButton("取消", null)
+                    .setPositiveButton("删除", (dialog, which) -> {
+                        // 删除句子
+                        mItems.remove(position); // 移除列表项
+                        notifyItemRemoved(position); // 刷新 RecyclerView
+                    })
+                    .show();
+        });
     }
 
     @Override
@@ -77,11 +94,16 @@ public class ShowDIYAdapter extends RecyclerView.Adapter<ShowDIYAdapter.ViewHold
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView itemImage;
         public EditText itemText;
+        public Button deleteButton; // 添加删除按钮的引用
 
         public ViewHolder(View view) {
             super(view);
             itemImage = view.findViewById(R.id.item_image);
             itemText = view.findViewById(R.id.item_text);
+            deleteButton = view.findViewById(R.id.button_diy_delete); // 绑定删除按钮
+
+            itemText.setPadding(16, 16, 16, 16);
+            itemText.setPaintFlags(itemText.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         }
     }
 }
