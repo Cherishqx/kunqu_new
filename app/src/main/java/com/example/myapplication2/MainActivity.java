@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         //初始化控件
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setItemIconTintList(null);
         //默认首页选中
         selectedFragment(0);
 

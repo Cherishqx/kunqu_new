@@ -1,11 +1,15 @@
 package com.example.myapplication2;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -19,6 +23,7 @@ public class SecondFragment extends Fragment {
     private Adapter_f2 adapter;
     private List<Data_Knowledge_f2> itemList;
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //inflater加载Fragment布局
