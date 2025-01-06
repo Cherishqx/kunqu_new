@@ -146,7 +146,7 @@ public class FirstFragment_origin extends Fragment {
 
         // 遍历推荐项列表
         for (ImageItem item : recommendItems) {
-            // 创建一个水平布局（容器）
+            // 创建一个水平布局
             LinearLayout container = new LinearLayout(parentView.getContext());
             container.setOrientation(LinearLayout.HORIZONTAL); // 水平布局
             container.setPadding(0, 16, 0, 16); // 设置内边距
@@ -162,7 +162,7 @@ public class FirstFragment_origin extends Fragment {
             // 动态创建 ImageView
             ImageView imageView = new ImageView(parentView.getContext());
             imageView.setImageResource(item.getImageResId());
-            imageView.setScaleType(ImageView.ScaleType.FIT_XY); // 设置为 FIT_XY 进行缩放
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP); // 设置为 FIT_XY 进行缩放
             LinearLayout.LayoutParams imageParams = new LinearLayout.LayoutParams(
                     (int) parentView.getResources().getDimension(R.dimen.image_width), // 90dp
                     (int) parentView.getResources().getDimension(R.dimen.image_height) // 90dp
@@ -182,7 +182,7 @@ public class FirstFragment_origin extends Fragment {
                     ViewGroup.LayoutParams.WRAP_CONTENT,
                     1f // 权重
             );
-            textParams.setMargins(0, 0, 16, 0); // 文字右侧设置外边距
+            textParams.setMargins(16, 0, 16, 0); // 文字右侧设置外边距
             textView.setLayoutParams(textParams);
 
             // 动态创建 ImageButton
@@ -213,8 +213,6 @@ public class FirstFragment_origin extends Fragment {
             llRecommend.addView(container);
         }
     }
-
-
 
 
     private void setKnowledgeItems(List<Data_Knowledge_f2> knowledgeItems, View view) {

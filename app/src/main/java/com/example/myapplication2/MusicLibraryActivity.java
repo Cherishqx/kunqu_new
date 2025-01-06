@@ -38,7 +38,7 @@ public class MusicLibraryActivity extends AppCompatActivity {
         items.add(new ImageItem(R.drawable.music_library_10, "挡马", "简介：昆曲单折武戏，出于清代乾隆时期的乱弹腔，《缀白裘》十一集卷三选录，方传芸和汪传钤于1954年改编所作。", "music_library_10"));
         items.add(new ImageItem(R.drawable.music_library_11, "窦娥冤", "简介：1958年江苏省苏昆剧团为纪念关汉卿戏剧创作七百年，整理关氏原作，首演于南京，是今人用昆曲谱唱元人北曲杂剧原本的剧目。", "music_library_11"));
         items.add(new ImageItem(R.drawable.music_library_12, "风云会", "简介：共二十七出。", "music_library_12"));
-        items.add(new ImageItem(R.drawable.music_library_13, "凤凰山（又称《百花记》）", "简介：原本失传，明清戏曲选本中存有散出，有折子戏留存。，讲述的是元朝时安西王谋逆，江花右、江六云姐弟潜作内应，内乱平定后，百花公主与江六云联姻。", "music_library_13"));
+        items.add(new ImageItem(R.drawable.music_library_13, "凤凰山", "简介：原本失传，明清戏曲选本中存有散出，有折子戏留存。，讲述的是元朝时安西王谋逆，江花右、江六云姐弟潜作内应，内乱平定后，百花公主与江六云联姻。", "music_library_13"));
         items.add(new ImageItem(R.drawable.music_library_14, "邯郸梦", "简介：讲述的是吕洞宾度卢生而使其经历荣辱梦幻的故事，共三十出。", "music_library_14"));
         items.add(new ImageItem(R.drawable.music_library_15, "红梨记", "简介：讲述的是北宋书生赵汝州与歌妓谢素秋的恋爱故事，原本共三十出。", "music_library_15"));
         items.add(new ImageItem(R.drawable.music_library_16, "红楼梦", "简介：全剧分为上下两本，总历时5个小时。", "music_library_16"));

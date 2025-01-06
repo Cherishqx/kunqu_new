@@ -16,7 +16,6 @@
     <Toolbar
         android:id="@+id/toolbar2"
         android:layout_width="match_parent"
-        android:background="@color/theme_green"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -26,6 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
+            android:textSize="24dp"
             android:textColor="@color/white"
             android:fontFamily="@font/jx"
             android:text="@string/page1_subpage1" />

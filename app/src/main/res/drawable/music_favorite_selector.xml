@@ -1,4 +1,4 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/music_favorite" android:state_selected="true"/>
-    <item android:drawable="@drawable/music_favorite_selected"/>
+    <item android:drawable="@drawable/heart_selected" android:state_selected="true"/>
+    <item android:drawable="@drawable/heart_before"/>
 </selector>
