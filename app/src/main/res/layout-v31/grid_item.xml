@@ -3,14 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="8dp"
-    android:layout_margin="12dp"
-    android:background="@drawable/theme_corners_bg">
+    android:layout_margin="6dp"
+    android:background="@drawable/white_radius">
 
     <ImageView
         android:id="@+id/imageView_musicLibrary"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="130dp"
         android:scaleType="centerCrop"
         android:clipToOutline="true"
         android:background="@drawable/mine_rounded_corners"
@@ -22,20 +21,20 @@
         android:id="@+id/titleTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="4dp"
-        android:fontFamily="@font/jx"
-        android:textColor="@color/white"
-        android:textSize="20sp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="10dp"
+        android:text="测试"
+        android:textColor="@color/black"
+        android:textSize="16dp"
         app:layout_constraintEnd_toStartOf="@id/imageButton_favorite"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageView_musicLibrary" />
 
     <ImageButton
         android:id="@+id/imageButton_favorite"
-        android:layout_marginTop="10dp"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        android:layout_marginTop="8dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:padding="4dp"
         android:scaleType="centerCrop"
         android:background="?attr/selectableItemBackground"
