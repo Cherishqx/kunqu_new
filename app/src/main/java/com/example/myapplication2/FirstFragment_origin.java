@@ -1,11 +1,15 @@
 package com.example.myapplication2;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -62,8 +66,8 @@ public class FirstFragment_origin extends Fragment {
                 .addBannerLifecycleObserver(this)//添加生命周期观察者
                 .setIndicator(new CircleIndicator(getContext()));
 
-        // 获取5个随机推荐项
-        List<ImageItem> recommendItems = com.example.myapplication2.DataProvider.getRandomItems(5);
+        // 获取3个随机推荐项
+        List<ImageItem> recommendItems = com.example.myapplication2.DataProvider.getRandomItems(3);
         setRecommendItems(recommendItems, view);
 
         // 获取5个随机知识卡片
@@ -71,54 +75,123 @@ public class FirstFragment_origin extends Fragment {
         Collections.shuffle(knowledgeItems); // 随机打乱列表
         setKnowledgeItems(knowledgeItems.subList(0, 4), view); // 只取前5个
 
-        TextView tv = view.findViewById(R.id.tv_music_library);
-        tv.setOnClickListener(new View.OnClickListener() {
+
+
+        //设置曲库跳转
+        ImageButton musicLibraryButton = view.findViewById(R.id.tv_music_library);
+        TextView musicLibraryText = view.findViewById(R.id.music_library_text);
+
+        View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // 执行相应的动作
                 Intent intent = new Intent(getActivity(), MusicLibraryActivity.class);
                 startActivity(intent);
             }
-        });
+        };
+
+        musicLibraryButton.setOnClickListener(listener);
+        musicLibraryText.setOnClickListener(listener);
+
+
+        //fragment跳转
+//        ImageButton knowledge = view.findViewById(R.id.knowledge);
+//        knowledge.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // 调用现有的 selectedFragment 方法，并传递相应的 position
+//                selectedFragment(0); // 假设 0 是 KnowledgeFragment 对应的 position
+//            }
+//        });
+//
+//        ImageButton nowpast = view.findViewById(R.id.nowpast);
+//        nowpast.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // 调用现有的 selectedFragment 方法，并传递相应的 position
+//                selectedFragment(1); // 假设 1 是 NowPastFragment 对应的 position
+//            }
+//        });
 
         return view;
     }
 
-    private void setRecommendItems(List<ImageItem> recommendItems, View view) {
-        int[] imageViewIds = {
-                R.id.recommend_1,
-                R.id.recommend_2,
-                R.id.recommend_3,
-                R.id.recommend_4,
-                R.id.recommend_5
-        };
+    private void setRecommendItems(List<ImageItem> recommendItems, View parentView) {
+        // 获取推荐项的父布局
+        LinearLayout llRecommend = parentView.findViewById(R.id.ll_recommend);
 
-        for (int i = 0; i < recommendItems.size(); i++) {
-            ImageItem item = recommendItems.get(i);
-            ImageView imageView = view.findViewById(imageViewIds[i]);
+        // 遍历推荐项列表
+        for (ImageItem item : recommendItems) {
+            // 创建一个水平布局（容器）
+            LinearLayout container = new LinearLayout(parentView.getContext());
+            container.setOrientation(LinearLayout.HORIZONTAL); // 水平布局
+            container.setPadding(0, 16, 0, 16); // 设置内边距
+//            container.setBackgroundResource(R.drawable.textview_border);
+            container.setClipToOutline(true); // 圆角裁剪
+            LinearLayout.LayoutParams containerParams = new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, // 宽度填充父布局
+                    ViewGroup.LayoutParams.WRAP_CONTENT  // 高度自适应
+            );
+            containerParams.setMargins(0, 0, 0, 16); // 设置外边距
+            container.setLayoutParams(containerParams);
+
+            // 动态创建 ImageView
+            ImageView imageView = new ImageView(parentView.getContext());
             imageView.setImageResource(item.getImageResId());
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY); // 设置为 FIT_XY 进行缩放
+            LinearLayout.LayoutParams imageParams = new LinearLayout.LayoutParams(
+                    (int) parentView.getResources().getDimension(R.dimen.image_width), // 90dp
+                    (int) parentView.getResources().getDimension(R.dimen.image_height) // 90dp
+            );
+            imageParams.setMargins(0, 0, 16, 0); // 图片右侧设置外边距
+            imageView.setLayoutParams(imageParams);
+            imageView.setClipToOutline(true); // 圆角裁剪
+            imageView.setBackgroundResource(R.drawable.mine_rounded_corners); // 设置背景
 
-            // Set layout parameters to match the static ImageView
-//            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-//                    (int) getResources().getDimension(R.dimen.image_width), // width in dp
-//                    (int) getResources().getDimension(R.dimen.image_height) // height in dp
-//            );
-//            layoutParams.setMargins(
-//                    (int) getResources().getDimension(R.dimen.image_margin_right),
-//                    0,
-//                    0,
-//                    0
-//            );
-//            imageView.setLayoutParams(layoutParams);
-            imageView.setClipToOutline(true);
-            imageView.setBackgroundResource(R.drawable.mine_rounded_corners);
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP); // Ensure the image fills the ImageView
-            imageView.setOnClickListener(v -> {
-                Intent intent = new Intent(getContext(), DetailActivity.class);
+            // 动态创建 TextView
+            TextView textView = new TextView(parentView.getContext());
+            textView.setText(item.getTitle()); // 显示图片名称
+            textView.setTextSize(18); // 设置文字大小
+            textView.setTextColor(parentView.getResources().getColor(R.color.black)); // 设置文字颜色
+            LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(
+                    0, // 使用权重分配宽度
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    1f // 权重
+            );
+            textParams.setMargins(0, 0, 16, 0); // 文字右侧设置外边距
+            textView.setLayoutParams(textParams);
+
+            // 动态创建 ImageButton
+            ImageButton button = new ImageButton(parentView.getContext());
+            button.setImageResource(R.drawable.play); // 设置按钮图标
+            button.setBackgroundResource(android.R.color.transparent); // 按钮背景透明
+            button.setScaleType(ImageButton.ScaleType.CENTER_INSIDE); // 设置缩放方式
+            button.setOnClickListener(v -> {
+                // 按钮点击事件
+                Intent intent = new Intent(parentView.getContext(), DetailActivity.class);
                 intent.putExtra("imageName", item.getImageName());
-                startActivity(intent);
+                parentView.getContext().startActivity(intent);
             });
+            LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
+                    (int) parentView.getResources().getDimension(R.dimen.image_width), // 50dp
+                    (int) parentView.getResources().getDimension(R.dimen.image_height) // 50dp
+            );
+//            buttonParams.gravity = Gravity.CENTER_HORIZONTAL;
+//            buttonParams.addR
+            button.setLayoutParams(buttonParams);
+
+            // 将 ImageView、TextView 和 Button 添加到父布局中
+            container.addView(imageView);
+            container.addView(textView);
+            container.addView(button);
+
+            // 将整个父布局添加到推荐项的父布局中
+            llRecommend.addView(container);
         }
     }
+
+
+
 
     private void setKnowledgeItems(List<Data_Knowledge_f2> knowledgeItems, View view) {
         // 随机打乱列表
@@ -134,12 +207,12 @@ public class FirstFragment_origin extends Fragment {
             // 为每个知识卡片创建一个ImageButton，并随机选择一个图片资源
             if (!imageResources.isEmpty()) {
                 ImageButton imageButton = new ImageButton(view.getContext());
-                int sizeInPx = (int) (120 * view.getContext().getResources().getDisplayMetrics().density);
+                int sizeInPx = (int) (100 * view.getContext().getResources().getDisplayMetrics().density);
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(sizeInPx, sizeInPx);
                 imageButton.setPadding(0, 0, 0, 0);
                 params.setMargins(0, 20, 20, 20);
                 imageButton.setLayoutParams(params);
-                imageButton.setScaleType(ImageView.ScaleType.FIT_XY);
+                imageButton.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
                 // 随机选择一个图片资源
                 int randomIndex = new Random().nextInt(imageResources.size());

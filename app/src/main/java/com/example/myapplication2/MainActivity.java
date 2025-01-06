@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if(item.getItemId() == R.id.navigation_first){
                     selectedFragment(0);
-                }else if(item.getItemId() == R.id.navigation_second){
-                    selectedFragment(1);
+//                }else if(item.getItemId() == R.id.navigation_second){
+//                    selectedFragment(1);
                 } else if (item.getItemId() == R.id.navigation_third) {
                     selectedFragment(2);
                 }else {

@@ -15,4 +15,6 @@
     <color name="point">#E06352</color>
     <color name="line">#776E6F</color>
     <color name="blue_deep">#011422</color>
+    <color name="recommend">#DEFAF4</color>
+
 </resources>
