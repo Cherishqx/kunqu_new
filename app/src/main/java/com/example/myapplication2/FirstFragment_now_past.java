@@ -5,11 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.example.myapplication2.Data.History;
 import com.example.myapplication2.Adapter.HistoryAdapter;
 import com.example.myapplication2.Adapter.InformationAdapter;
@@ -30,12 +33,14 @@ import okhttp3.Response;
 
 public class FirstFragment_now_past extends Fragment {
 
+    private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView recyclerViewTop;
     private RecyclerView recyclerViewBottom;
     private HistoryAdapter topAdapter;
     private InformationAdapter bottomAdapter;
     private NestedScrollView nestedScrollView;
     private ImageView imageView;
+    private ProgressBar progressBar;
 
     public FirstFragment_now_past() {
     }
@@ -44,46 +49,39 @@ public class FirstFragment_now_past extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_now_past, container, false);
-        // 初始化RecyclerView和NestedScrollView
+
+        // Initialize SwipeRefreshLayout and other views
+        swipeRefreshLayout = rootView.findViewById(R.id.swipe_refresh_layout);
         recyclerViewTop = rootView.findViewById(R.id.recycler_view_top);
         recyclerViewBottom = rootView.findViewById(R.id.recycler_view_bottom);
         nestedScrollView = rootView.findViewById(R.id.nested_scroll_view);
         imageView = rootView.findViewById(R.id.imgcenter);
+        progressBar = rootView.findViewById(R.id.progressBar);
 
-        // 设置布局管理器，LinearLayoutManager 用于垂直滚动
+        // Set layout managers
         recyclerViewTop.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerViewBottom.setLayoutManager(new LinearLayoutManager(getContext()));
-        getTopData(rootView);
-        // 获取数据
-        //List<History> topData = getTopData(rootView);
-        List<TicketInformation> bottomData = getBottomData();
 
-        // 创建适配器
-        //topAdapter = new HistoryAdapter(getContext(), topData);
-        bottomAdapter = new InformationAdapter(getContext(), bottomData);
+        // Show progress bar while loading data
+        progressBar.setVisibility(View.VISIBLE);
+        nestedScrollView.setVisibility(View.GONE);
 
-        // 设置适配器
-        //recyclerViewTop.setAdapter(topAdapter);
-        recyclerViewBottom.setAdapter(bottomAdapter);
+        // Set SwipeRefreshLayout listener
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Reload data when the user swipes down
+                getTopData(rootView,false);
+            }
+        });
 
-//        // 在视图加载完成后，滚动到ImageView位置
-//        nestedScrollView.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                // 获取ImageView在NestedScrollView中的位置
-//                int[] location = new int[2];
-//                imageView.getLocationInWindow(location);
-//                int y = location[1]-270;
-//                // 使用smoothScrollTo平滑滚动到ImageView的位置
-//                nestedScrollView.smoothScrollTo(0, y);
-//            }
-//        });
+        // Load data initially
+        getTopData(rootView,true);
 
         return rootView;
     }
 
-    // 获取上方 RecyclerView 的数据
-    private void getTopData(View view) {
+    private void getTopData(View view,Boolean fresh) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -99,18 +97,31 @@ public class FirstFragment_now_past extends Fragment {
                     // Parse JSON response using Moshi
                     Moshi moshi = new Moshi.Builder().build();
                     JsonAdapter<List<History>> jsonAdapter = moshi.adapter(Types.newParameterizedType(List.class, History.class));
-
                     List<History> historyList = jsonAdapter.fromJson(responseBody);
 
+                    // Get bottom data (using database or other method)
+                    List<TicketInformation> bottomData = getBottomData();
+
                     // Update RecyclerView on the main thread
-                    if (historyList != null) {
+                    if (historyList != null && bottomData != null) {
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                // Initialize the top adapter and set it to the RecyclerView
+                                // Set adapters to RecyclerViews
                                 topAdapter = new HistoryAdapter(getContext(), historyList);
                                 recyclerViewTop.setAdapter(topAdapter);
-                                smoothScrollToImageView();
+
+                                bottomAdapter = new InformationAdapter(getContext(), bottomData);
+                                recyclerViewBottom.setAdapter(bottomAdapter);
+
+                                // Hide ProgressBar and show content
+                                progressBar.setVisibility(View.GONE);
+                                nestedScrollView.setVisibility(View.VISIBLE);
+                                if(fresh){
+                                    smoothScrollToImageView();
+                                }
+                                // Stop the swipe refresh animation
+                                swipeRefreshLayout.setRefreshing(false);
                             }
                         });
                     }
@@ -120,6 +131,8 @@ public class FirstFragment_now_past extends Fragment {
                         @Override
                         public void run() {
                             Toast.makeText(view.getContext(), "网络连接失败", Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.GONE);
+                            swipeRefreshLayout.setRefreshing(false);
                         }
                     });
                 }
@@ -127,10 +140,9 @@ public class FirstFragment_now_past extends Fragment {
         }).start();
     }
 
-    // 获取下方 RecyclerView 的数据
     private List<TicketInformation> getBottomData() {
         DatabaseHelper dbHelper = new DatabaseHelper(getContext());
-        return dbHelper.getTicketAll(); // 替换为实际获取数据的方法
+        return dbHelper.getTicketAll(); // Replace with actual method
     }
 
     private void smoothScrollToImageView() {
@@ -145,3 +157,4 @@ public class FirstFragment_now_past extends Fragment {
         });
     }
 }
+
