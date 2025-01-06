@@ -99,11 +99,22 @@ public class FirstFragment_now_past extends Fragment {
                     JsonAdapter<List<History>> jsonAdapter = moshi.adapter(Types.newParameterizedType(List.class, History.class));
                     List<History> historyList = jsonAdapter.fromJson(responseBody);
 
-                    // Get bottom data (using database or other method)
-                    List<TicketInformation> bottomData = getBottomData();
+                    //票的数据
+                    Request request1 = new Request.Builder()
+                            .url(Config.url + "ticketinformation/selectall")
+                            .build();
+                    Response response1 = client.newCall(request1).execute();
+                    String responseBody1 = response1.body().string();
+                    Log.e("111", responseBody1);
+
+                    // Parse JSON response using Moshi
+                    Moshi moshi1 = new Moshi.Builder().build();
+                    JsonAdapter<List<TicketInformation>> jsonAdapter1 = moshi1.adapter(Types.newParameterizedType(List.class, TicketInformation.class));
+                    List<TicketInformation> historyList1 = jsonAdapter1.fromJson(responseBody1);
+                    Log.e("1111",historyList1.toString());
 
                     // Update RecyclerView on the main thread
-                    if (historyList != null && bottomData != null) {
+                    if (historyList != null && historyList1 != null) {
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -111,7 +122,7 @@ public class FirstFragment_now_past extends Fragment {
                                 topAdapter = new HistoryAdapter(getContext(), historyList);
                                 recyclerViewTop.setAdapter(topAdapter);
 
-                                bottomAdapter = new InformationAdapter(getContext(), bottomData);
+                                bottomAdapter = new InformationAdapter(getContext(), historyList1);
                                 recyclerViewBottom.setAdapter(bottomAdapter);
 
                                 // Hide ProgressBar and show content

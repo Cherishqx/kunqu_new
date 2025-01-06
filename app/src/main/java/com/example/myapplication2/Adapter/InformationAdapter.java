@@ -10,7 +10,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-
+import com.bumptech.glide.Glide;
+import com.example.myapplication2.Config;
 import com.example.myapplication2.Data.TicketInformation;
 import com.example.myapplication2.R;
 
@@ -44,16 +45,21 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
         holder.placeText.setText(ticketInformation.getPlace());
         holder.fareText.setText(ticketInformation.getFare());
 
-        // 根据 picName 设置 ImageView 的图片
+        // 获取 picName, 假设 picName 是图片文件名，例如 "11.png"
         String picName = ticketInformation.getPicName();
         Log.d("PicNameDebug", "PicName: " + picName);
-        int imageResId = context.getResources().getIdentifier(picName, "drawable", context.getPackageName());
-        if (imageResId != 0) {
-            holder.imageView.setImageResource(imageResId);
-        } else {
-            // 如果没有找到图片资源，可以设置一个默认的图片
-            holder.imageView.setImageResource(R.drawable.ticket0);
-        }
+
+        // 拼接出完整的图片URL
+        String imageUrl = Config.url+"images/" + picName;
+
+        // 使用 Glide 加载图片到 ImageView
+        Glide.with(context)
+                .load(imageUrl) // 设置图片URL
+                .placeholder(R.drawable.ticket0) // 设置加载中的默认图片
+                .error(R.drawable.ticket0) // 设置加载失败时的默认图片
+                .override(400, 600)
+                .fitCenter()
+                .into(holder.imageView); // 加载到对应的 ImageView
     }
 
     // 获取数据集的大小
