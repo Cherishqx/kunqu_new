@@ -2,11 +2,11 @@ package com.example.myapplication2.Data;
 
 public class History {
     private String title;
-    private String intro;
+    private String text;
 
     public History(String title, String intro) {
         this.title = title;
-        this.intro = intro;
+        this.text = intro;
     }
 
     public String getTitle() {
@@ -14,7 +14,7 @@ public class History {
     }
 
     public String getIntro() {
-        return intro;
+        return text;
     }
 
     public void setTitle(String title) {
@@ -22,6 +22,6 @@ public class History {
     }
 
     public void setIntro(String intro) {
-        this.intro = intro;
+        this.text = intro;
     }
 }
