@@ -3,7 +3,10 @@ package com.example.myapplication2;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RoundRectShape;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -119,15 +122,18 @@ public class HistoryFragment extends Fragment {
         LayoutInflater inflater = getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_background_selection, null);
         builder.setView(dialogView);
-
+        // Prevent background from dimming
         AlertDialog dialog = builder.create();
+        dialog.getWindow().setDimAmount(0f);  // Set dim amount to 0 to prevent dimming
+
+        dialog.show();
 
         ImageButton image1 = dialogView.findViewById(R.id.emotion1);
         ImageButton image2 = dialogView.findViewById(R.id.emotion2);
         ImageButton image3 = dialogView.findViewById(R.id.emotion3);
         ImageButton image4 = dialogView.findViewById(R.id.emotion4);
         ImageButton image5 = dialogView.findViewById(R.id.emotion5);
-        ImageButton customEmotion = dialogView.findViewById(R.id.custom_emotion);
+        //ImageButton customEmotion = dialogView.findViewById(R.id.custom_emotion);
 
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
@@ -145,8 +151,6 @@ public class HistoryFragment extends Fragment {
                     selectedImage = ResourcesCompat.getDrawable(getResources(), R.drawable.emotion4, null);
                 } else if (id == R.id.emotion5) {
                     selectedImage = ResourcesCompat.getDrawable(getResources(), R.drawable.emotion5, null);
-                } else if (id == R.id.custom_emotion) {
-                    // Handle custom emotion logic here
                 }
                 if (selectedImage != null) {
                     emoCalendarView.setDateImage(String.valueOf(day), selectedImage);
@@ -161,7 +165,7 @@ public class HistoryFragment extends Fragment {
         image3.setOnClickListener(listener);
         image4.setOnClickListener(listener);
         image5.setOnClickListener(listener);
-        customEmotion.setOnClickListener(listener);
+        //customEmotion.setOnClickListener(listener);
 
         dialog.show();
     }
