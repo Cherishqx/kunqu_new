@@ -113,6 +113,30 @@ public class FirstFragment_origin extends Fragment {
 //            }
 //        });
 
+        ImageButton nowpast = view.findViewById(R.id.nowpast);
+        nowpast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 创建一个Intent，指定从当前Activity跳转到TargetActivity
+                Intent intent = new Intent(getActivity(), NowPastActivity.class);
+
+                // 启动目标Activity
+                startActivity(intent);
+            }
+        });
+
+        ImageButton knowledgeButton = view.findViewById(R.id.knowledge);
+        knowledgeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 创建一个Intent，指定从当前Activity跳转到TargetActivity
+                Intent intent = new Intent(getActivity(), KnowledgeButtonActivity.class);
+
+                // 启动目标Activity
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 
