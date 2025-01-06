@@ -58,13 +58,14 @@
     <string name="day0102">因梦成戏</string>
     <string name="day0101">因情成梦</string>
     <string name="bt_calendar">bt_calendar\n</string>
-    <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="login">Login</string>
-    <string name="signupRedirectText">Not yet registered? Signup</string>
-    <string name="confirm_password">Confirm Password</string>
-    <string name="sign_up">Sign Up</string>
-    <string name="loginRedirectText">Already an user? login</string>
+    <string name="email">邮箱</string>
+    <string name="password">密码</string>
+    <string name="login">登录</string>
+    <string name="signupRedirectText">还没有账号? 注册</string>
+    <string name="confirm_password">确认密码</string>
+    <string name="sign_up">注册</string>
+    <string name="loginRedirectText">已有账号? 登录</string>
     <string name="knowledge_rec">知识推荐</string>
+    <string name="guest_mode">暂不登录</string>
 
 </resources>
