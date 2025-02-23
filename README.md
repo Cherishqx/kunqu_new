@@ -1,4 +1,4 @@
-![48537e1bb21b269e1ad9e5f3baa67ee](https://github.com/user-attachments/assets/0031e367-5fa0-4399-ae1a-27944e8a7f2d)# 昆曲簿 - Android Studio 应用
+# 昆曲簿 - Android Studio 应用
 
 [点击查看后端代码](https://github.com/Cherishqx/springboot-kunqu)
 
