@@ -1,4 +1,4 @@
-# 昆曲簿 - Android Studio 应用
+![48537e1bb21b269e1ad9e5f3baa67ee](https://github.com/user-attachments/assets/0031e367-5fa0-4399-ae1a-27944e8a7f2d)# 昆曲簿 - Android Studio 应用
 
 [点击查看后端代码](https://github.com/Cherishqx/springboot-kunqu)
 
@@ -26,6 +26,12 @@
 
 - **心情日历**  
   提供心情日历功能，用户可以根据当天的情绪选择对应的情绪人物，并在日历中记录自己的心情。
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/6f087ae3-d7a8-40ad-8c0e-869d717406fa" width="30%" />
+  <img src="https://github.com/user-attachments/assets/512f5403-e478-4dc4-b7fb-2d244781fc93" width="30%" />
+  <img src="https://github.com/user-attachments/assets/81e9a8b7-34ed-4a6f-8e1a-8215e654a7ee" width="30%" />
+</p>
 
 ---
 
