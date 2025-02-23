@@ -1,5 +1,6 @@
-package com.example.myapplication2;
+package com.example.myapplication2; 
 
-public class Config {
-    public static String url = "http://192.168.0.107:8080/";
+public class Config { 
+    public static String url = "地址";
+
 }
