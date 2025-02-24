@@ -50,7 +50,7 @@
 
 1. 克隆项目到本地：
    ```bash
-   git clone https://github.com/your_username/kunqu_android.git
+   git clone https://github.com/Cherishqx/kunqu_new.git 
 
 2. 在 Android Studio 中打开项目，配置相关依赖。
 
